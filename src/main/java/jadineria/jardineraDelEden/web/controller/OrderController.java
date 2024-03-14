@@ -1,7 +1,8 @@
 package jadineria.jardineraDelEden.web.controller;
 
-import jadineria.jardineraDelEden.domain.service.EmployeeServiceImpl;
-import jadineria.jardineraDelEden.persistence.dtos.EmployeeDTO;
+import jadineria.jardineraDelEden.domain.service.OrderServiceImpl;
+import jadineria.jardineraDelEden.persistence.dtos.OrderDTO;
+import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,18 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/customers")
 @CrossOrigin("*")
-public class EmployeeController {
+public class OrderController {
 
-    private final EmployeeServiceImpl employeeService;
+    private final OrderServiceImpl orderService;
 
     @Autowired
-    public EmployeeController(EmployeeServiceImpl employeeService) {
-        this.employeeService = employeeService;
+    public OrderController(OrderServiceImpl orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping
-    public List<EmployeeDTO> getAllCustomers() {
-        return employeeService.getAll();
+    public List<OrderDTO> getAllOrder() {
+        return orderService.getAll();
     }
-
 }
