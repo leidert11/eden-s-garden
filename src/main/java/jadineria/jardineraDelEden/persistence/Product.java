@@ -1,51 +1,45 @@
 package jadineria.jardineraDelEden.persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jadineria.jardineraDelEden.persistence.dtos.ProductDTO;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "producto")
 public class Product {
-
     @Id
-    @Column(name = "codigo_producto ", nullable = false)
+    @Column(name = "codigo_producto")
     private String productCode;
 
     @Column(name = "nombre", nullable = false)
     private String name;
 
-    @Column(name = "dimensiones", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "gama", nullable = false)
+    private GamaProduct gamaProduct;
+
+    @Column(name = "dimensiones")
     private String dimensions;
 
-    @Column(name = "proveedor", nullable = false)
+    @Column(name = "proveedor")
     private String supplier;
 
-    @Column( name = "descripcion", nullable = false,columnDefinition = "TEXT")
+    @Column(name = "descripcion")
     private String description;
 
     @Column(name = "cantidad_en_stock", nullable = false)
-    private Long quantityInStock;
+    private Integer amountInStock;
 
     @Column(name = "precio_venta", nullable = false)
     private double salePrice;
 
-    @Column(name = "precio_proveedor", nullable = false)
-    private String supplierPrice;
+    @Column(name = "precio_proveedor")
+    private double supplierPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "gama", nullable = false)
-    private ProductRange range;
-
-    @OneToMany(mappedBy = "product")
-    private List<OrderDetail> orderDetails = new ArrayList<>();
-
-    public String getproductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setproductCode(String productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -55,6 +49,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public GamaProduct getGamaProduct() {
+        return gamaProduct;
+    }
+
+    public void setGamaProduct(GamaProduct gamaProduct) {
+        this.gamaProduct = gamaProduct;
     }
 
     public String getDimensions() {
@@ -81,27 +83,57 @@ public class Product {
         this.description = description;
     }
 
-    public Long getQuantityInStock() {
-        return quantityInStock;
+    public Integer getAmountInStock() {
+        return amountInStock;
     }
 
-    public void setQuantityInStock(Long quantityInStock) {
-        this.quantityInStock = quantityInStock;
+    public void setAmountInStock(Integer amountInStock) {
+        this.amountInStock = amountInStock;
     }
 
-    public double getsalePrice() {
+    public double getSalePrice() {
         return salePrice;
     }
 
-    public void setsalePrice(double salePrice) {
+    public void setSalePrice(double salePrice) {
         this.salePrice = salePrice;
     }
 
-    public String getsupplierPrice() {
+    public double getSupplierPrice() {
         return supplierPrice;
     }
 
-    public void setsupplierPrice(String supplierPrice) {
+    public void setSupplierPrice(double supplierPrice) {
         this.supplierPrice = supplierPrice;
+    }
+
+    public ProductDTO toDTO(){
+        ProductDTO dto = new ProductDTO();
+        dto.setProductCode(this.productCode);
+        dto.setName(this.name);
+        dto.setGamaProduct(this.getGamaProduct().getGama());
+        dto.setDimensions(this.dimensions);
+        dto.setSupplier(this.supplier);
+        dto.setDescription(this.description);
+        dto.setAmountInStock(this.amountInStock);
+        dto.setSalePrice(this.salePrice);
+        dto.setSupplierPrice(this.supplierPrice);
+
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productCode='" + productCode + '\'' +
+                ", name='" + name + '\'' +
+                ", gamaProduct=" + gamaProduct +
+                ", dimensions='" + dimensions + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", description='" + description + '\'' +
+                ", amountInStock=" + amountInStock +
+                ", salePrice=" + salePrice +
+                ", supplierPrice=" + supplierPrice +
+                '}';
     }
 }

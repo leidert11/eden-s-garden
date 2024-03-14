@@ -1,33 +1,26 @@
 package jadineria.jardineraDelEden.persistence;
 
-import java.util.ArrayList;
+import jadineria.jardineraDelEden.persistence.dtos.EmployeeDTO;
+import jakarta.persistence.*;
+
 import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "empleado")
 public class Employee {
-
     @Id
-    @Column(name = "codigo_producto ", nullable = false)
-    private String employeeCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo_empleado")
+    private Integer employeeCode;
 
     @Column(name = "nombre", nullable = false)
     private String name;
 
     @Column(name = "apellido1", nullable = false)
-    private String firstSurname;
+    private String lastName1;
 
-    @Column(name = "apellido2", nullable = false)
-    private String secondSurname;
+    @Column(name = "apellido2")
+    private String lastName2;
 
     @Column(name = "extension", nullable = false)
     private String extension;
@@ -35,31 +28,25 @@ public class Employee {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "codigo_jefe", nullable = false)
-    private String supervisorCode;
+    @Column(name = "puesto")
+    private String rol;
 
-    @Column(name = "puesto", nullable = false)
-    private String position;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_oficina")
+    private Office office;
 
-    @ManyToOne
-    @JoinColumn(name = "codigo_oficina", nullable = false)
-    private Office officeCode;
-
-    @ManyToOne
-    @JoinColumn(name = "codigo_jefe", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_jefe")
     private Employee boss;
 
-    @OneToMany(mappedBy = "boss")
-    private List<Employee> subordinates = new ArrayList<>();
+    @OneToMany(mappedBy = "repSales", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Customer> customers;
 
-    @OneToMany(mappedBy = "salesRep")
-    private List<Customer> customers = new ArrayList<>();
-
-    public String getemployeeCode() {
+    public Integer getEmployeeCode() {
         return employeeCode;
     }
 
-    public void setemployeeCode(String employeeCode) {
+    public void setEmployeeCode(Integer employeeCode) {
         this.employeeCode = employeeCode;
     }
 
@@ -71,20 +58,20 @@ public class Employee {
         this.name = name;
     }
 
-    public String getfirstSurname() {
-        return firstSurname;
+    public String getLastName1() {
+        return lastName1;
     }
 
-    public void setfirstSurname(String firstSurname) {
-        this.firstSurname = firstSurname;
+    public void setLastName1(String lastName1) {
+        this.lastName1 = lastName1;
     }
 
-    public String getsecondSurname() {
-        return secondSurname;
+    public String getLastName2() {
+        return lastName2;
     }
 
-    public void setsecondSurname(String secondSurname) {
-        this.secondSurname = secondSurname;
+    public void setLastName2(String lastName2) {
+        this.lastName2 = lastName2;
     }
 
     public String getExtension() {
@@ -103,19 +90,64 @@ public class Employee {
         this.email = email;
     }
 
-    public String getsupervisorCode() {
-        return supervisorCode;
+    public String getRol() {
+        return rol;
     }
 
-    public void setsupervisorCode(String supervisorCode) {
-        this.supervisorCode = supervisorCode;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public String getPosition() {
-        return position;
+    public Office getOffice() {
+        return office;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setOffice(Office office) {
+        this.office = office;
+    }
+
+    public Employee getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Employee boss) {
+        this.boss = boss;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public EmployeeDTO toDTO() {
+        EmployeeDTO dto = new EmployeeDTO();
+        dto.setEmployeeCode(this.employeeCode);
+        dto.setName(this.name);
+        dto.setLastName1(this.lastName1);
+        dto.setLastName2(this.lastName2);
+        dto.setExtension(this.extension);
+        dto.setEmail(this.email);
+        dto.setRol(this.rol);
+        dto.setOfficeCode(this.office != null ? this.office.getOfficeCode() : null);
+        dto.setBossCode(this.boss != null ? this.boss.getEmployeeCode() : null);
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeCode=" + employeeCode +
+                ", name='" + name + '\'' +
+                ", lastName1='" + lastName1 + '\'' +
+                ", lastName2='" + lastName2 + '\'' +
+                ", extension='" + extension + '\'' +
+                ", email='" + email + '\'' +
+                ", rol='" + rol + '\'' +
+                ", office=" + office +
+                ", boss=" + boss +
+                '}';
     }
 }

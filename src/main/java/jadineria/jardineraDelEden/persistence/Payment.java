@@ -1,53 +1,30 @@
 package jadineria.jardineraDelEden.persistence;
 
+import jadineria.jardineraDelEden.persistence.dtos.PaymentDTO;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table(name = "pago")
 public class Payment {
-
-    @Id
-    @Column(name = "codigo_cliente", nullable = false)
-    private String customerCode;
-
-    @Column(name = "forma_pago", nullable = false)
-    private String paymentType;
-
     @Id
     @Column(name = "id_transaccion", nullable = false)
     private String transactionId;
 
+    @Column(name = "forma_pago", nullable = false)
+    private String wayToPay;
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_pago", nullable = false)
-    private String paymentDate;
+    private Date paymentDate;
 
     @Column(name = "total", nullable = false)
     private double total;
 
-    @ManyToOne
-    @JoinColumn(name = "codigo_cliente", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_cliente")
     private Customer customer;
-
-    public String getCustomerCode() {
-        return customerCode;
-    }
-
-    public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
-    }
-
-    public String getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
-    }
 
     public String getTransactionId() {
         return transactionId;
@@ -57,11 +34,19 @@ public class Payment {
         this.transactionId = transactionId;
     }
 
-    public String getPaymentDate() {
+    public String getWayToPay() {
+        return wayToPay;
+    }
+
+    public void setWayToPay(String wayToPay) {
+        this.wayToPay = wayToPay;
+    }
+
+    public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(String paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -71,5 +56,34 @@ public class Payment {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public PaymentDTO toDTO() {
+        PaymentDTO dto = new PaymentDTO();
+        dto.setTransactionId(this.transactionId);
+        dto.setWayToPay(this.wayToPay);
+        dto.setPaymentDate(this.paymentDate);
+        dto.setTotal(this.total);
+        dto.setCustomerCode(this.customer != null ? this.customer.getCustomerCode() : null);
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "transactionId='" + transactionId + '\'' +
+                ", wayToPay='" + wayToPay + '\'' +
+                ", paymentDate=" + paymentDate +
+                ", total=" + total +
+                ", customer=" + customer +
+                '}';
     }
 }
