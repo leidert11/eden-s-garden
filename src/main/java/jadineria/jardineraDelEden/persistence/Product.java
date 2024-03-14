@@ -1,5 +1,8 @@
 package jadineria.jardineraDelEden.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,11 +15,6 @@ public class Product {
 
     @Column(name = "nombre", nullable = false)
     private String name;
-
-
-    @Column(name = "gama", nullable = false)
-    private String range;
-
 
     @Column(name = "dimensiones", nullable = false)
     private String dimensions;
@@ -36,7 +34,12 @@ public class Product {
     @Column(name = "precio_proveedor", nullable = false)
     private String supplierPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "gama", nullable = false)
+    private ProductRange range;
 
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
     public String getproductCode() {
         return productCode;
@@ -52,14 +55,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRange() {
-        return range;
-    }
-
-    public void setRange(String range) {
-        this.range = range;
     }
 
     public String getDimensions() {

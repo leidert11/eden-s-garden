@@ -3,14 +3,9 @@ package jadineria.jardineraDelEden.persistence;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
-// CREATE TABLE detalle_pedido (
-//   codigo_pedido INTEGER NOT NULL,
-//   codigo_producto VARCHAR(15) NOT NULL,
-//   cantidad INTEGER NOT NULL,
-//   precio_unidad NUMERIC(15,2) NOT NULL,
-//   numero_linea SMALLINT NOT NULL);
 
 @Entity
 @Table(name = "detalle_pedido")
@@ -20,6 +15,7 @@ public class OrderDetail {
     @Column(name = "codigo_pedido", nullable = false)
     private String orderCode;
 
+    @Id
     @Column(name = "codigo_producto", nullable = false)
     private String productCode;
 
@@ -31,6 +27,14 @@ public class OrderDetail {
 
     @Column(name = "numero_linea", nullable = false)
     private int lineNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "codigo_pedido", nullable = false, insertable = false, updatable = false)
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "codigo_producto", nullable = false, insertable = false, updatable = false)
+    private Product product;
 
 
     public String getOrderCode() {

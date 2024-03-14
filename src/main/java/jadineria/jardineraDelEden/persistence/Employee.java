@@ -1,9 +1,16 @@
 package jadineria.jardineraDelEden.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "empleado")
@@ -28,14 +35,25 @@ public class Employee {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "codigo_oficina", nullable = false)
-    private String officeCode;
-
     @Column(name = "codigo_jefe", nullable = false)
     private String supervisorCode;
 
     @Column(name = "puesto", nullable = false)
     private String position;
+
+    @ManyToOne
+    @JoinColumn(name = "codigo_oficina", nullable = false)
+    private Office officeCode;
+
+    @ManyToOne
+    @JoinColumn(name = "codigo_jefe", insertable = false, updatable = false)
+    private Employee boss;
+
+    @OneToMany(mappedBy = "boss")
+    private List<Employee> subordinates = new ArrayList<>();
+
+    @OneToMany(mappedBy = "salesRep")
+    private List<Customer> customers = new ArrayList<>();
 
     public String getemployeeCode() {
         return employeeCode;
@@ -83,14 +101,6 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getofficeCode() {
-        return officeCode;
-    }
-
-    public void setofficeCode(String officeCode) {
-        this.officeCode = officeCode;
     }
 
     public String getsupervisorCode() {

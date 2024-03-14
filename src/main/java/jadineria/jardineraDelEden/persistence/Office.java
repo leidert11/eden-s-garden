@@ -1,9 +1,9 @@
 package jadineria.jardineraDelEden.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "oficina")
@@ -33,6 +33,9 @@ public class Office {
 
     @Column(name = "linea_direccion2", nullable = false)
     private String addressLine2;
+
+    @OneToMany(mappedBy = "officeCode",fetch = FetchType.EAGER)
+    private List<Employee> employees = new ArrayList<>();
 
     public String getofficeCode() {
         return officeCode;

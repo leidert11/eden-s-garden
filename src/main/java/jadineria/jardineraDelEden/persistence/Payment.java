@@ -4,11 +4,13 @@ package jadineria.jardineraDelEden.persistence;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pago")
-public class Pay {
+public class Payment {
 
     @Id
     @Column(name = "codigo_cliente", nullable = false)
@@ -17,6 +19,7 @@ public class Pay {
     @Column(name = "forma_pago", nullable = false)
     private String paymentType;
 
+    @Id
     @Column(name = "id_transaccion", nullable = false)
     private String transactionId;
 
@@ -26,6 +29,9 @@ public class Pay {
     @Column(name = "total", nullable = false)
     private double total;
 
+    @ManyToOne
+    @JoinColumn(name = "codigo_cliente", nullable = false, insertable = false, updatable = false)
+    private Customer customer;
 
     public String getCustomerCode() {
         return customerCode;

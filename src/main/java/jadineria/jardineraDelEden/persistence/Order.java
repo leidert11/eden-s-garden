@@ -1,8 +1,14 @@
 package jadineria.jardineraDelEden.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +36,13 @@ public class Order {
 
     @Column(name = "codigo_cliente", nullable = false)
     private String customerCode;
+
+    @ManyToOne
+    @JoinColumn(name = "codigo_cliente", insertable = false, updatable = false)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
     public String getOrderCode() {
         return orderCode;

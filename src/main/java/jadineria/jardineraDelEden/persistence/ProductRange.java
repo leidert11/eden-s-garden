@@ -1,17 +1,14 @@
 package jadineria.jardineraDelEden.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-// CREATE TABLE gama_producto (
-//   gama VARCHAR(50) NOT NULL,
-//   descripcion_texto TEXT,
-//   descripcion_html TEXT,
-//   imagen VARCHAR(256),
-//   PRIMARY KEY (gama)
-// );
 @Entity
 @Table(name = "gama_producto")
 public class ProductRange {
@@ -28,6 +25,9 @@ public class ProductRange {
 
     @Column(name = "imagen", nullable = false)
     private String image;
+
+    @OneToMany(mappedBy = "range")
+    private List<Product> products = new ArrayList<>();
 
     public String getRange() {
         return range;
