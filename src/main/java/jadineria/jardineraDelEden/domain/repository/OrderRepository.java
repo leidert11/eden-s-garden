@@ -1,9 +1,9 @@
 package jadineria.jardineraDelEden.domain.repository;
 
-import jadineria.jardineraDelEden.persistence.Employee;
+import jadineria.jardineraDelEden.persistence.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository  extends JpaRepository<Employee, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 }
