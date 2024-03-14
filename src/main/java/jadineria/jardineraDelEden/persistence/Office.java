@@ -1,14 +1,13 @@
 package jadineria.jardineraDelEden.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jadineria.jardineraDelEden.persistence.dtos.OfficeDTO;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "oficina")
 public class Office {
-
     @Id
     @Column(name = "codigo_oficina", nullable = false)
     private String officeCode;
@@ -19,11 +18,11 @@ public class Office {
     @Column(name = "pais", nullable = false)
     private String country;
 
-    @Column(name = "region", nullable = false)
+    @Column(name = "region")
     private String region;
 
     @Column(name = "codigo_postal", nullable = false)
-    private String postalCode;
+    private String zipCode;
 
     @Column(name = "telefono", nullable = false)
     private String phone;
@@ -31,14 +30,17 @@ public class Office {
     @Column(name = "linea_direccion1", nullable = false)
     private String addressLine1;
 
-    @Column(name = "linea_direccion2", nullable = false)
+    @Column(name = "linea_direccion2")
     private String addressLine2;
 
-    public String getofficeCode() {
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
+    private List<Employee> employees;
+
+    public String getOfficeCode() {
         return officeCode;
     }
 
-    public void setofficeCode(String officeCode) {
+    public void setOfficeCode(String officeCode) {
         this.officeCode = officeCode;
     }
 
@@ -66,12 +68,12 @@ public class Office {
         this.region = region;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getPhone() {
@@ -96,5 +98,40 @@ public class Office {
 
     public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public OfficeDTO toDTO() {
+        OfficeDTO dto = new OfficeDTO();
+        dto.setOfficeCode(this.officeCode);
+        dto.setCity(this.city);
+        dto.setCountry(this.country);
+        dto.setRegion(this.region);
+        dto.setZipCode(this.zipCode);
+        dto.setPhone(this.phone);
+        dto.setAddressLine1(this.addressLine1);
+        dto.setAddressLine2(this.addressLine2);
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Office{" +
+                "officeCode='" + officeCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", region='" + region + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                '}';
     }
 }

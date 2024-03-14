@@ -1,22 +1,27 @@
 package jadineria.jardineraDelEden.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jadineria.jardineraDelEden.persistence.dtos.OrderDTO;
+import jakarta.persistence.*;
 
+import java.sql.Date;
+
+@Entity
+@Table(name = "pedido")
 public class Order {
-
     @Id
-    @Column(name = "codigo_pedido", nullable = false)
-    private String orderCode;
-
+    @Column(name = "codigo_pedido")
+    private Integer orderCode;
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_pedido", nullable = false)
-    private String orderDate;
+    private Date orderDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_esperada", nullable = false)
-    private String expectedDate;
+    private Date expectedDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_entrega")
-    private String deliveryDate;
+    private Date deliverDate;
 
     @Column(name = "estado", nullable = false)
     private String status;
@@ -24,39 +29,40 @@ public class Order {
     @Column(name = "comentarios")
     private String comments;
 
-    @Column(name = "codigo_cliente", nullable = false)
-    private String customerCode;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_cliente", nullable = false)
+    private Customer customer;
 
-    public String getOrderCode() {
+    public Integer getOrderCode() {
         return orderCode;
     }
 
-    public void setOrderCode(String orderCode) {
+    public void setOrderCode(Integer orderCode) {
         this.orderCode = orderCode;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
-    public String getExpectedDate() {
+    public Date getExpectedDate() {
         return expectedDate;
     }
 
-    public void setExpectedDate(String expectedDate) {
+    public void setExpectedDate(Date expectedDate) {
         this.expectedDate = expectedDate;
     }
 
-    public String getDeliveryDate() {
-        return deliveryDate;
+    public Date getDeliverDate() {
+        return deliverDate;
     }
 
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setDeliverDate(Date deliverDate) {
+        this.deliverDate = deliverDate;
     }
 
     public String getStatus() {
@@ -75,11 +81,36 @@ public class Order {
         this.comments = comments;
     }
 
-    public String getCustomerCode() {
-        return customerCode;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public OrderDTO toDTO(){
+        OrderDTO dto = new OrderDTO();
+        dto.setOrderCode(this.orderCode);
+        dto.setOrderDate(this.orderDate);
+        dto.setExpectedDate(this.expectedDate);
+        dto.setDeliverDate(this.deliverDate != null ? this.deliverDate : null);
+        dto.setStatus(this.status);
+        dto.setComments(this.comments != null ? this.comments : null);
+        dto.setCustomerId(this.getCustomer().getCustomerCode());
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderCode=" + orderCode +
+                ", orderDate=" + orderDate +
+                ", expectedDate=" + expectedDate +
+                ", deliverDate=" + deliverDate +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", customer=" + customer +
+                '}';
     }
 }

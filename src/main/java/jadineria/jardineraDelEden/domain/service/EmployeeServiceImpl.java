@@ -1,44 +1,30 @@
 package jadineria.jardineraDelEden.domain.service;
 
 import jadineria.jardineraDelEden.domain.repository.EmployeeRepository;
+import jadineria.jardineraDelEden.persistence.Customer;
 import jadineria.jardineraDelEden.persistence.Employee;
-import org.springframework.http.ResponseEntity;
+import jadineria.jardineraDelEden.persistence.dtos.EmployeeDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @Service
-public class EmployeeServiceImpl implements ServiceInterface<Employee>{
+public class EmployeeServiceImpl implements ServiceInterface<EmployeeDTO>{
 
     private final EmployeeRepository employeeRepository;
 
+    @Autowired
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
-    @Override
-    public List<Employee> getAll() {
-        return null;
-    }
 
     @Override
-    public ResponseEntity<Employee> getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Employee> save(Employee employee) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Employee> update(Long id, Employee employee) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
+    public List<EmployeeDTO> getAll() {
+        return employeeRepository.findAll().stream()
+                .map(Employee::toDTO)
+                .toList();
     }
 }
