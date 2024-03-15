@@ -23,8 +23,9 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<EmployeeDTO> getAllCustomers() {
+    public List<EmployeeDTO> getAllEmployee() {
         return employeeService.getAll();
     }
+    
 
 }
