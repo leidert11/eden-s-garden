@@ -1,7 +1,10 @@
 package jadineria.jardineraDelEden.domain.service;
 
 import jadineria.jardineraDelEden.domain.repository.ProductRepository;
+import jadineria.jardineraDelEden.persistence.Office;
 import jadineria.jardineraDelEden.persistence.Product;
+import jadineria.jardineraDelEden.persistence.dtos.ProductDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -9,36 +12,20 @@ import java.util.List;
 
 
 @Service
-public class ProductServiceImpl implements ServiceInterface<Product>{
+public class ProductServiceImpl implements ServiceInterface<ProductDTO>{
 
     private final ProductRepository productRepository;
 
+    @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    @Override
-    public List<Product> getAll() {
-        return null;
-    }
 
     @Override
-    public ResponseEntity<Product> getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Product> save(Product product) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Product> update(Long id, Product product) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
+    public List<ProductDTO> getAll() {
+        return productRepository.findAll().stream()
+                .map(Product::toDTO)
+                .toList();
     }
 }

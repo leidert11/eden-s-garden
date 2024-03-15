@@ -1,87 +1,95 @@
 package jadineria.jardineraDelEden.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jadineria.jardineraDelEden.persistence.dtos.CustomerDTO;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo_cliente")
+    private Integer customerCode;
 
-        @Id
-        @Column(name = "codigo_cliente", nullable = false)
-        private String customerCode;
+    @Column(name = "nombre_cliente", nullable = false)
+    private String customerName;
 
-        @Column(name = "nombre_cliente", nullable = false)
-        private String name;
+    @Column(name = "nombre_contacto")
+    private String contactName;
 
-        @Column(name = "nombre_contacto", nullable = false)
-        private String contactName;
+    @Column(name = "apellido_contacto")
+    private String contactLastName;
 
-        @Column(name = "apellido_contacto", nullable = false)
-        private String contactSurname;
+    @Column(name = "telefono", nullable = false)
+    private String phone;
 
-        @Column(name = "telefono", nullable = false)
-        private String phone;
+    @Column(name = "fax", nullable = false)
+    private String fax;
 
-        @Column(name = "fax", nullable = false)
-        private String fax;
+    @Column(name = "linea_direccion1", nullable = false)
+    private String addressLine1;
 
-        @Column(name = "linea_direccion1", nullable = false)
-        private String addressLine1;
+    @Column(name = "linea_direccion2")
+    private String addressLine2;
 
-        @Column(name = "linea_direccion2", nullable = false)
-        private String addressLine2;
+    @Column(name = "ciudad", nullable = false)
+    private String city;
 
-        @Column(name = "ciudad", nullable = false)
-        private String city;
+    @Column(name = "region")
+    private String region;
 
-        @Column(name = "region", nullable = false)
-        private String region;
+    @Column(name = "pais")
+    private String country;
 
-        @Column(name = "pais", nullable = false)
-        private String country;
+    @Column(name = "codigo_postal")
+    private String zipCode;
 
-        @Column(name = "codigo_postal", nullable = false)
-        private String postalCode;
+    @Column(name = "limite_credito")
+    private double creditLimit;
 
-        @Column(name = "codigo_empleado_rep_ventas", nullable = false)
-        private String salesRepCode;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "codigo_empleado_rep_ventas")
+    private Employee repSales;
 
-        @Column(name = "limiteCredito", nullable = false)
-        private String creditLimit;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Payment> payments;
 
-    public String getcustomerCode() {
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    public Integer getCustomerCode() {
         return customerCode;
     }
 
-    public void setcustomerCode(String customerCode) {
+    public void setCustomerCode(Integer customerCode) {
         this.customerCode = customerCode;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getcontactName() {
+    public String getContactName() {
         return contactName;
     }
 
-    public void setcontactName(String contactName) {
+    public void setContactName(String contactName) {
         this.contactName = contactName;
     }
 
-    public String getcontactSurname() {
-        return contactSurname;
+    public String getContactLastName() {
+        return contactLastName;
     }
 
-    public void setcontactSurname(String contactSurname) {
-        this.contactSurname = contactSurname;
+    public void setContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
     }
 
     public String getPhone() {
@@ -100,19 +108,19 @@ public class Customer {
         this.fax = fax;
     }
 
-    public String getaddressLine1() {
+    public String getAddressLine1() {
         return addressLine1;
     }
 
-    public void setaddressLine1(String addressLine1) {
+    public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
     }
 
-    public String getAddressline2() {
+    public String getAddressLine2() {
         return addressLine2;
     }
 
-    public void setaddressLine2(String addressLine2) {
+    public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
     }
 
@@ -140,27 +148,82 @@ public class Customer {
         this.country = country;
     }
 
-    public String getpostalCode() {
-        return postalCode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setpostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getsalesRepCode() {
-        return salesRepCode;
-    }
-
-    public void setsalesRepCode(String salesRepCode) {
-        this.salesRepCode = salesRepCode;
-    }
-
-    public String getcreditLimit() {
+    public double getCreditLimit() {
         return creditLimit;
     }
 
-    public void setcreditLimit(String creditLimit) {
+    public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
+    }
+
+    public Employee getRepSales() {
+        return repSales;
+    }
+
+    public void setRepSales(Employee repSales) {
+        this.repSales = repSales;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public CustomerDTO toDTO() {
+        CustomerDTO dto = new CustomerDTO();
+        dto.setCustomerCode(this.customerCode);
+        dto.setCustomerName(this.customerName);
+        dto.setContactName(this.contactName);
+        dto.setContactLastName(this.contactLastName);
+        dto.setPhone(this.phone);
+        dto.setFax(this.fax);
+        dto.setAddressLine1(this.addressLine1);
+        dto.setAddressLine2(this.addressLine2);
+        dto.setCity(this.city);
+        dto.setRegion(this.region);
+        dto.setCountry(this.country);
+        dto.setZipCode(this.zipCode);
+        dto.setCreditLimit(this.creditLimit);
+        dto.setRepSalesCode(this.repSales != null ? this.repSales.getEmployeeCode() : null);
+        return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerCode=" + customerCode +
+                ", customerName='" + customerName + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", contactLastName='" + contactLastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", creditLimit=" + creditLimit +
+                ", repSales=" + repSales +
+                '}';
     }
 }
