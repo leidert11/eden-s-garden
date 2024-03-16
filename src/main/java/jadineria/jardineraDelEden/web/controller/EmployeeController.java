@@ -27,5 +27,38 @@ public class EmployeeController {
         return employeeService.getAll();
     }
     
+    @GetMapping("/employees-not-associated-office")
+    public List<EmployeeDTO> getEmployeesNotAssociatedOffice(){
+        return employeeService.getEmployeesNotAssociatedOffice();
+    }
 
+    @GetMapping("/employees-do-not-have-clients")
+    public List<EmployeeDTO> getEmployeesDoNotHaveClients(){
+        return employeeService.getEmployeesDoNotHaveClients();
+    }
+
+    @GetMapping("/non-client-office-employees-work")
+    public List<EmployeeDTO> getNonClientOfficeEmployeesWork(){
+        return employeeService.getNonClientOfficeEmployeesWork();
+    }
+
+     @GetMapping("/employees-not-associated-office-and-not-client")
+    public List<EmployeeDTO> getEmployeesNotAssociatedOfficeAndNotClient (){
+        return employeeService.getEmployeesNotAssociatedOfficeAndNotClient();
+    }
+
+    @GetMapping("/find-employees-without-customers")
+    public List<EmployeeDTO> findEmployeesWithoutCustomers(){
+        return employeeService.findEmployeesWithoutCustomers();
+    }
+
+    @GetMapping("/count-employees")
+    public Long countEmployees(){
+        return employeeService.countEmployees();
+    }
+
+    @GetMapping("/count-customers-by-employee")
+    public List<Object[]> countCustomersByEmployee(){
+        return employeeService.countCustomersByEmployee();
+    }
 }

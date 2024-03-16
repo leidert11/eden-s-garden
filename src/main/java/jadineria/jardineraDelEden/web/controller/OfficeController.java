@@ -26,4 +26,10 @@ public class OfficeController {
     public List<OfficeDTO> getAllOffice() {
         return officeService.getAll();
     }
+
+    @GetMapping("/ofices-not-employees-have-client-with-gama-frutales")
+    public List<String> getOfficesNotEmployeesHaveClientWithGamaFrutales(){
+        return officeService.getOfficesNotEmployeesHaveClientWithGamaFrutales();
+    }
+
 }

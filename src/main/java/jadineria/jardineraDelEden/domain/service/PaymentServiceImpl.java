@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PaymentServiceImpl implements ServiceInterface<PaymentDTO>{
@@ -25,5 +26,9 @@ public class PaymentServiceImpl implements ServiceInterface<PaymentDTO>{
         return paymentRepository.findAll().stream()
                 .map(Payment::toDTO)
                 .toList();
+    }
+
+    public Optional<Double> findAveragePaymentTotalForYear2009(){
+        return paymentRepository.findAveragePaymentTotalForYear2009();
     }
 }

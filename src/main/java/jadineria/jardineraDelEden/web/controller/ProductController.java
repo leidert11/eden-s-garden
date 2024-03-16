@@ -27,4 +27,19 @@ public class ProductController {
     public List<ProductDTO> getAllProduct() {
         return productService.getAll();
     }
+
+    @GetMapping("/products-are-not-in-any-order")
+    public List<ProductDTO> getProductsAreNotInAnyOrder(){
+        return productService.getProductsAreNotInAnyOrder();
+    }
+
+    @GetMapping("/products-are-not-in-any-order-n-d-i")
+    public List<String> getProductsAreNotInAnyOrderNDI(){
+        return productService.getProductsAreNotInAnyOrderNDI();
+    }
+
+    @GetMapping("/find-max-and-min-price")
+    public List<Object[]> findMaxAndMinPrice(){
+        return productService.findMaxAndMinPrice();
+    }
 }

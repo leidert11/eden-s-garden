@@ -18,8 +18,6 @@ public class OrderDetailController {
 
     private final OrderDetailServiceImpl orderDetailService;
 
-
-
     @Autowired
     public OrderDetailController(OrderDetailServiceImpl orderDetailService) {
         this.orderDetailService = orderDetailService;
@@ -28,5 +26,10 @@ public class OrderDetailController {
     @GetMapping
     public List<OrderDetailDTO> getAllOrderDetail() {
         return orderDetailService.getAll();
+    }
+
+    @GetMapping("/count-distinct-products-by-order")
+    public List<Object> countDistinctProductsByOrder(){
+        return orderDetailService.countDistinctProductsByOrder();
     }
 }

@@ -26,4 +26,8 @@ public class OrderDetailServiceImpl implements ServiceInterface<OrderDetailDTO>{
                 .map(OrderDetail::toDTO)
                 .toList();
     }
+
+    public List<Object> countDistinctProductsByOrder(){
+        return orderDetailRepository.countDistinctProductsByOrder();
+    }
 }

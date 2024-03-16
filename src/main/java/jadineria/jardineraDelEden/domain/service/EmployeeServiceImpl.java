@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -26,5 +27,43 @@ public class EmployeeServiceImpl implements ServiceInterface<EmployeeDTO>{
         return employeeRepository.findAll().stream()
                 .map(Employee::toDTO)
                 .toList();
+    }
+
+    public List<EmployeeDTO> getEmployeesNotAssociatedOffice(){
+        return employeeRepository.getEmployeesNotAssociatedOffice().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getEmployeesDoNotHaveClients(){
+        return employeeRepository.getEmployeesDoNotHaveClients().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getNonClientOfficeEmployeesWork(){
+        return employeeRepository.getNonClientOfficeEmployeesWork().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getEmployeesNotAssociatedOfficeAndNotClient(){
+        return employeeRepository.getEmployeesNotAssociatedOfficeAndNotClient().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> findEmployeesWithoutCustomers(){
+        return employeeRepository.findEmployeesWithoutCustomers().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public Long countEmployees(){
+        return employeeRepository.countEmployees();
+    }
+
+    public List<Object[]> countCustomersByEmployee(){
+        return employeeRepository.countCustomersByEmployee();
     }
 }

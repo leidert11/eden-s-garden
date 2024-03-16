@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/payment")
@@ -25,5 +26,10 @@ public class PaymentController {
     @GetMapping
     public List<PaymentDTO> getAllPayment() {
         return paymentService.getAll();
+    }
+
+    @GetMapping("/find-average-payment-total-for-year")
+    public Optional<Double> findAveragePaymentTotalForYear2009(){
+        return paymentService.findAveragePaymentTotalForYear2009();
     }
 }

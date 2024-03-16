@@ -26,4 +26,8 @@ public class OrderServiceImpl implements ServiceInterface<OrderDTO>{
                 .map(Order::toDTO)
                 .toList();
     }
+
+    public List<Object[]> countOrderByStatus(){
+        return orderRepository.countOrderByStatus();
+    }
 }

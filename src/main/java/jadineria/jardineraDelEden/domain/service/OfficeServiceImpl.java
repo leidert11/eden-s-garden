@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OfficeServiceImpl implements ServiceInterface<OfficeDTO>{
+public class OfficeServiceImpl implements ServiceInterface<OfficeDTO> {
     private final OfficeRepository officeRepository;
 
     @Autowired
@@ -25,5 +25,9 @@ public class OfficeServiceImpl implements ServiceInterface<OfficeDTO>{
         return officeRepository.findAll().stream()
                 .map(Office::toDTO)
                 .toList();
+    }
+
+    public List<String> getOfficesNotEmployeesHaveClientWithGamaFrutales(){
+        return officeRepository.getOfficesNotEmployeesHaveClientWithGamaFrutales();
     }
 }

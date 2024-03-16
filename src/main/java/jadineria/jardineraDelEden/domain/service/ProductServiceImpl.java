@@ -21,11 +21,23 @@ public class ProductServiceImpl implements ServiceInterface<ProductDTO>{
         this.productRepository = productRepository;
     }
 
-
     @Override
     public List<ProductDTO> getAll() {
         return productRepository.findAll().stream()
                 .map(Product::toDTO)
                 .toList();
+    }
+
+    public List<ProductDTO> getProductsAreNotInAnyOrder(){
+        return productRepository.getProductsAreNotInAnyOrder().stream()
+                .map(Product::toDTO)
+                .toList();
+    }
+    public List<String> getProductsAreNotInAnyOrderNDI(){
+        return productRepository.getProductsAreNotInAnyOrderNDI();
+    }
+
+    public List<Object[]> findMaxAndMinPrice(){
+        return productRepository.findMaxAndMinPrice();
     }
 }

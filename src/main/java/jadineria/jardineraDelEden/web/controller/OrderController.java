@@ -27,4 +27,9 @@ public class OrderController {
     public List<OrderDTO> getAllOrder() {
         return orderService.getAll();
     }
+
+    @GetMapping("/count-order-by-status")
+    public List<Object[]> countOrderByStatus(){
+        return orderService.countOrderByStatus();
+    }
 }
