@@ -10,30 +10,32 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository  extends JpaRepository<Employee, Integer> {
-//     @Query("")
-//    public List<> get();
 
-//    SELECT * FROM empleado LEFT JOIN oficina ON empleado.codigo_oficina = oficina.codigo_oficina WHERE oficina.codigo_oficina IS NULL;
+    // Empleados que no tienen una oficina asociada.
     @Query("SELECT e FROM Employee e LEFT JOIN e.office o WHERE o IS NULL")
    public List<Employee> getEmployeesNotAssociatedOffice();
 
-//    SELECT * FROM empleado LEFT JOIN cliente ON empleado.codigo_empleado = cliente.codigo_empleado_rep_ventas WHERE cliente.codigo_empleado_rep_ventas IS NULL;
+    // Empleados que no tienen un cliente asociado.
     @Query("SELECT e FROM Employee e LEFT JOIN e.customers o where o IS NULL")
    public List<Employee> getEmployeesDoNotHaveClients();
-//    SELECT empleado.*, oficina.* FROM empleado LEFT JOIN cliente ON empleado.codigo_empleado = cliente.codigo_empleado_rep_ventas LEFT JOIN oficina ON empleado.codigo_oficina = oficina.codigo_oficina WHERE cliente.codigo_empleado_rep_ventas IS NULL;
-     @Query("SELECT e, a FROM Employee e LEFT JOIN e.customers o LEFT JOIN e.office a WHERE o IS NULL")
+
+    // Empleados que no tienen un cliente asociado junto con los datos de la oficina donde trabajan.
+    @Query("SELECT e, a FROM Employee e LEFT JOIN e.customers o LEFT JOIN e.office a WHERE o IS NULL")
     public List<Employee> getNonClientOfficeEmployeesWork();
 
-//    SELECT * FROM empleado LEFT JOIN oficina ON empleado.codigo_oficina = oficina.codigo_oficina LEFT JOIN cliente ON empleado.codigo_empleado = cliente.codigo_empleado_rep_ventas WHERE oficina.codigo_oficina IS NULL OR cliente.codigo_empleado_rep_ventas IS NULL;
-     @Query("SELECT e FROM Employee e LEFT JOIN e.office o LEFT JOIN e.customers a WHERE o IS NULL OR a IS NULL")
+    // Empleados que no tienen una oficina asociada y los que no tienen un cliente asociado.
+    @Query("SELECT e FROM Employee e LEFT JOIN e.office o LEFT JOIN e.customers a WHERE o IS NULL OR a IS NULL")
     public List<Employee> getEmployeesNotAssociatedOfficeAndNotClient();
 
+    // empleados que no tienen clientes asociados y el nombre de su jefe asociado.
     @Query("SELECT e1, e2.name AS bossName FROM Employee e1 LEFT JOIN e1.customers c LEFT JOIN e1.boss e2 WHERE c.repSales IS NULL")
     public List<Employee> findEmployeesWithoutCustomers();
 
+    // Cuántos empleados hay en la compañía
     @Query("SELECT COUNT(e) FROM Employee e")
     public Long countEmployees();
 
+    // Nombre de los representantes de ventas y el número de clientes al que atiende cada uno.
     @Query("SELECT e.name, COUNT(c.customerCode) FROM Employee e LEFT JOIN e.customers c GROUP BY e.name")
     public List<Object[]> countCustomersByEmployee();
     

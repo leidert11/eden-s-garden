@@ -10,18 +10,20 @@ import java.util.List;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderDetailId> {
-//     @Query("")
-//    public List<> get();
 
+    // Número de productos diferentes que hay en cada uno de los pedidos.
     @Query("SELECT od.id.orderCode, COUNT(DISTINCT od.id.productCode) FROM OrderDetail od GROUP BY od.id.orderCode")
     public List<Object> countDistinctProductsByOrder();
 
+    // Suma de la cantidad total de todos los productos que aparecen en cada uno de los pedidos.
     @Query("SELECT dp.id.orderCode, SUM(dp.amount) FROM OrderDetail dp GROUP BY dp.id.orderCode")
     public List<Object[]> sumQuantityByOrder();
 
+    // Listado de los 20 productos más vendidos y el número total de unidades que se han vendido de cada uno. El listado deberá estar ordenado por el número total de unidades vendidas.
     @Query("SELECT od.id.productCode, SUM(od.amount) AS totalSold FROM OrderDetail od GROUP BY od.id.productCode ORDER BY totalSold DESC LIMIT 20")
     public List<Object[]> findTop20ProductsByTotalSold();
 
+    // Facturación que ha tenido la empresa en toda la historia, indicando la base imponible, el IVA y el total facturado. La base imponible se calcula sumando el coste del producto por el número de unidades vendidas de la tabla detalle_pedido. El IVA es el 21 % de la base imponible, y el total la suma de los dos campos anteriores.
     @Query("SELECT SUM(od.amount * p.salePrice) AS base_imponible, " +
             "SUM(od.amount * p.salePrice) * 0.21 AS IVA, " +
             "SUM(od.amount * p.salePrice) * 1.21 AS total_facturado " +
@@ -29,6 +31,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderD
             "JOIN od.product p")
     public List<Object[]> calculateInvoiceTotals();
 
+    // La misma información que en la pregunta anterior, pero agrupada por código de producto.
     @Query("SELECT dp.product.productCode, " +
             "SUM(dp.amount * dp.unitPrice) AS baseImponible, " +
             "SUM(dp.amount * dp.unitPrice) * 0.21 AS iva, " +
@@ -37,6 +40,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderD
             "GROUP BY dp.product.productCode")
     public List<Object[]> calculateProductInvoiceTotals();
 
+    // La misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por OR.
     @Query("SELECT dp.product.productCode, " +
             "SUM(dp.amount * dp.unitPrice) AS baseImponible, " +
             "SUM(dp.amount * dp.unitPrice) * 0.21 AS iva, " +
@@ -47,6 +51,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderD
             "GROUP BY dp.product.productCode")
     public List<Object[]> calculateTotalByProductStartingWithOR();
 
+    // Lista las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA). /calculate-total-by-product
     @Query("SELECT " +
             "dp.product.name, " +
             "SUM(dp.amount) AS unitsSold, " +

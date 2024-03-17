@@ -12,15 +12,15 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 //     @Query("")
 //    public List<> get();
 
-
+    // Productos que nunca han aparecido en un pedido.
     @Query("SELECT p FROM Product p LEFT JOIN OrderDetail o ON p.productCode = o.product.productCode WHERE o.product.productCode IS NULL")
     public List<Product> getProductsAreNotInAnyOrder();
 
-//   SELECT p.codigo_producto, p.nombre, p.descripcion, g.imagen FROM producto p LEFT JOIN detalle_pedido dp ON p.codigo_producto = dp.codigo_producto JOIN gama_producto g ON p.gama = g.gama WHERE dp.codigo_producto IS NULL;
-
+    // Productos que nunca han aparecido en un pedido. El resultado debe mostrar el nombre, la descripción y la imagen del producto.
     @Query("SELECT p.name, p.description, g.image FROM Product p LEFT JOIN OrderDetail o ON p.productCode = o.product.productCode JOIN p.gamaProduct g WHERE o.product.productCode IS NULL")
     public List<String> getProductsAreNotInAnyOrderNDI();
 
+    // Precio de venta del producto más caro y más barato en una misma consulta.
     @Query("SELECT MAX(p.salePrice), MIN(p.salePrice) FROM Product p")
     public List<Object[]> findMaxAndMinPrice();
 
