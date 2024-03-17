@@ -14,4 +14,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Query("SELECT o.status, COUNT(o) FROM Order o GROUP BY o.status ORDER BY COUNT(o) DESC")
     public List<Object[]> countOrderByStatus();
+
+
 }

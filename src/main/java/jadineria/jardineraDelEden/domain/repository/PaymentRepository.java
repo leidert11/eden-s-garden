@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,5 +16,7 @@ public interface PaymentRepository extends JpaRepository<Payment, String> {
     @Query("SELECT AVG(p.total) FROM Payment p WHERE FUNCTION('YEAR', p.paymentDate) = 2009")
     public Optional<Double> findAveragePaymentTotalForYear2009();
 
+    @Query("SELECT FUNCTION('YEAR', p.paymentDate) AS año, SUM(p.total) FROM Payment p GROUP BY FUNCTION('YEAR', p.paymentDate)")
+    List<Object[]> getTotalPaymentsByYear();
 
 }

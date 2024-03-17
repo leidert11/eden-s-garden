@@ -30,4 +30,29 @@ public class OrderDetailServiceImpl implements ServiceInterface<OrderDetailDTO>{
     public List<Object> countDistinctProductsByOrder(){
         return orderDetailRepository.countDistinctProductsByOrder();
     }
+
+    public List<Object[]> sumQuantityByOrder(){
+        return orderDetailRepository.sumQuantityByOrder();
+    }
+
+    public List<Object[]> findTop20ProductsByTotalSold(){
+        return orderDetailRepository.findTop20ProductsByTotalSold();
+    }
+
+    public List<Object[]> calculateInvoiceTotals(){
+        return orderDetailRepository.calculateInvoiceTotals();
+    }
+
+    public List<Object[]> calculateProductInvoiceTotals(){
+        return orderDetailRepository.calculateProductInvoiceTotals();
+    }
+
+    public List<Object[]> calculateTotalByProductStartingWithOR(){
+        return orderDetailRepository.calculateTotalByProductStartingWithOR();
+    }
+
+    public List<Object[]> calculateTotalByProduct(){
+        return orderDetailRepository.calculateTotalByProduct();
+    }
 }
+

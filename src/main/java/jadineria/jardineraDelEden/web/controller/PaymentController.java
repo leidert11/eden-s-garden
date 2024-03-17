@@ -32,4 +32,9 @@ public class PaymentController {
     public Optional<Double> findAveragePaymentTotalForYear2009(){
         return paymentService.findAveragePaymentTotalForYear2009();
     }
+
+    @GetMapping("/get-total-payments-by-year")
+    public List<Object[]> getTotalPaymentsByYear(){
+        return paymentService.getTotalPaymentsByYear();
+    }
 }

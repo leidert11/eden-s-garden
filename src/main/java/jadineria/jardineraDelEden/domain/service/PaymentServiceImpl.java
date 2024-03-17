@@ -31,4 +31,8 @@ public class PaymentServiceImpl implements ServiceInterface<PaymentDTO>{
     public Optional<Double> findAveragePaymentTotalForYear2009(){
         return paymentRepository.findAveragePaymentTotalForYear2009();
     }
+
+    public List<Object[]> getTotalPaymentsByYear(){
+        return paymentRepository.getTotalPaymentsByYear();
+    }
 }
