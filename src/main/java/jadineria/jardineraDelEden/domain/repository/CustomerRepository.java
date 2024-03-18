@@ -47,22 +47,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
            "JOIN e.office o")
   List<Object[]> findDistinctCustomerRepresentativeOffice();
 
-  // 27
-  // @Query("SELECT DISTINCT c.customerName, gp.gama " +
-  //          "FROM Cliente c " +
-  //          "JOIN c.orders o " +
-  //          "JOIN o.orderDetails od " +
-  //          "JOIN od.product p " +
-  //          "JOIN p.gamaProduct gp")
-  //   List<Object[]> findCustomerGamas();
-
-  // @Query("SELECT c FROM Customer c LEFT JOIN c.payments p WHERE p.customer IS NULL")
-  // List<Customer> findCustomersWithNoPayments();
-
-  // // 29
-  // @Query("SELECT c FROM Customer c LEFT JOIN c.orders p WHERE p.customer IS NULL")
-  // List<Customer> findCustomersWithNoOrders();
-
     // Clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
     @Query("SELECT c FROM Customer c LEFT JOIN c.payments p LEFT JOIN c.orders o WHERE p IS NULL OR o IS NULL")
     public List<Customer> getCustomersDoNotPayAnyOrders();
