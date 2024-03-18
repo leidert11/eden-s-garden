@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -26,5 +27,65 @@ public class EmployeeServiceImpl implements ServiceInterface<EmployeeDTO>{
         return employeeRepository.findAll().stream()
                 .map(Employee::toDTO)
                 .toList();
+    }
+     // 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
+     public List<Object[]> findEmployeesByBossId7() {
+        return employeeRepository.findEmployeesByBossId7();
+    }
+
+    // 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa.
+    public List<Object[]> findBossOfCompany() {
+        return employeeRepository.findBossOfCompany();
+    }
+
+    // 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
+    public List<Object[]> findEmployeesNotSalesRepresentatives() {
+        return employeeRepository.findEmployeesNotSalesRepresentatives();
+    }
+    // 24
+    public List<Object[]> findEmployeeAndBossNames() {
+        return employeeRepository.findEmployeeAndBossNames();
+    }
+    //25
+    public List<Object[]> findAllEmployeesWithBossAndGrandBoss() {
+        return employeeRepository.findAllEmployeesWithBossAndGrandBoss();
+    }
+
+    public List<EmployeeDTO> getEmployeesNotAssociatedOffice(){
+        return employeeRepository.getEmployeesNotAssociatedOffice().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getEmployeesDoNotHaveClients(){
+        return employeeRepository.getEmployeesDoNotHaveClients().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getNonClientOfficeEmployeesWork(){
+        return employeeRepository.getNonClientOfficeEmployeesWork().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> getEmployeesNotAssociatedOfficeAndNotClient(){
+        return employeeRepository.getEmployeesNotAssociatedOfficeAndNotClient().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public List<EmployeeDTO> findEmployeesWithoutCustomers(){
+        return employeeRepository.findEmployeesWithoutCustomers().stream()
+                .map(Employee::toDTO)
+                .toList();
+    }
+
+    public Long countEmployees(){
+        return employeeRepository.countEmployees();
+    }
+
+    public List<Object[]> countCustomersByEmployee(){
+        return employeeRepository.countCustomersByEmployee();
     }
 }
