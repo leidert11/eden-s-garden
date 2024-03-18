@@ -26,4 +26,21 @@ public class OfficeServiceImpl implements ServiceInterface<OfficeDTO>{
                 .map(Office::toDTO)
                 .toList();
     }
+        // 1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
+        public List<Object[]> findOfficeCodeAndCity() {
+            return officeRepository.findOfficeCodeAndCity();
+        }
+    
+        // 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
+        public List<Object[]> findCityAndPhoneInSpain() {
+            return officeRepository.findCityAndPhoneInSpain();
+        }
+        // 20
+        public List<Object[]> findCustomersWithPaymentsAndTheirSalesRepAndOfficeCity() {
+            return officeRepository.findCustomersWithPaymentsAndTheirSalesRepAndOfficeCity();
+        }
+        // 22 Consulta para encontrar las direcciones de oficina en Fuenlabrada
+    public List<String> findOfficeAddressesInFuenlabrada() {
+        return officeRepository.findOfficeAddressesInFuenlabrada();
+    }
 }

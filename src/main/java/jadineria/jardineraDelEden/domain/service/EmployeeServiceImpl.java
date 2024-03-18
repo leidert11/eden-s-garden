@@ -27,4 +27,26 @@ public class EmployeeServiceImpl implements ServiceInterface<EmployeeDTO>{
                 .map(Employee::toDTO)
                 .toList();
     }
+     // 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
+     public List<Object[]> findEmployeesByBossId7() {
+        return employeeRepository.findEmployeesByBossId7();
+    }
+
+    // 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa.
+    public List<Object[]> findBossOfCompany() {
+        return employeeRepository.findBossOfCompany();
+    }
+
+    // 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
+    public List<Object[]> findEmployeesNotSalesRepresentatives() {
+        return employeeRepository.findEmployeesNotSalesRepresentatives();
+    }
+    // 24
+    public List<Object[]> findEmployeeAndBossNames() {
+        return employeeRepository.findEmployeeAndBossNames();
+    }
+    //25
+    public List<Object[]> findAllEmployeesWithBossAndGrandBoss() {
+        return employeeRepository.findAllEmployeesWithBossAndGrandBoss();
+    }
 }

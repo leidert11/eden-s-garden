@@ -26,4 +26,19 @@ public class PaymentServiceImpl implements ServiceInterface<PaymentDTO>{
                 .map(Payment::toDTO)
                 .toList();
     }
+     // 8.
+     public List<Integer> findCustomerCodesWithPaymentsIn2008() {
+        return paymentRepository.findCustomerCodesWithPaymentsIn2008();
+    }
+    // Consulta 13 - Pagos realizados en PayPal en el año 2008, ordenados por total descendente
+    // @NamedQuery("paypalPaymentsIn2008OrderedByTotalDesc")
+    public List<Payment> findPaypalPaymentsIn2008OrderByTotalDesc() {
+        return paymentRepository.findPaypalPaymentsIn2008OrderByTotalDesc();
+    }
+
+    // Consulta 14 - Formas de pago distintas en la tabla de pagos
+    // @NamedQuery("distinctPaymentMethods")
+    public List<String> findDistinctPaymentMethods() {
+        return paymentRepository.findDistinctPaymentMethods();
+    }
 }

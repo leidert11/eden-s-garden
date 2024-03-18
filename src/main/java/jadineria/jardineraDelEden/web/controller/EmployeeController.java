@@ -26,5 +26,32 @@ public class EmployeeController {
     public List<EmployeeDTO> getAllCustomers() {
         return employeeService.getAll();
     }
+     // 3.
+     @GetMapping("/employees-by-boss-id-7")
+     public List<Object[]> getEmployeesByBossId7() {
+         return employeeService.findEmployeesByBossId7();
+     }
+ 
+     // 4.
+     @GetMapping("/boss-of-company")
+     public List<Object[]> getBossOfCompany() {
+         return employeeService.findBossOfCompany();
+     }
+ 
+     // 5.
+     @GetMapping("/employees-not-sales-representatives")
+     public List<Object[]> getEmployeesNotSalesRepresentatives() {
+         return employeeService.findEmployeesNotSalesRepresentatives();
+     }
+    // 24
+     @GetMapping("/employee-and-boss-names")
+    public List<Object[]> getEmployeeAndBossNames() {
+        return employeeService.findEmployeeAndBossNames();
+    }
+    //25
+    @GetMapping("/with-boss-and-grandboss")
+    public List<Object[]> getAllEmployeesWithBossAndGrandBoss() {
+        return employeeService.findAllEmployeesWithBossAndGrandBoss();
+    }
 
 }
