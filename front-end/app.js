@@ -1,6 +1,16 @@
 
-import { copyToClipboard, copiar } from './js/customer.js';
+import * as customer from './js/customer.js';
 
-copyToClipboard();
+import * as employee from './js/employee.js';
 
-copiar();
+import * as gamaProduct from './js/gamaProduct.js';
+
+import * as office from './js/office.js';
+
+import * as orderDetail from './js/orderDetail.js';
+
+import * as payment from './js/payment.js';
+
+import * as product from './js/product.js';
+
+
