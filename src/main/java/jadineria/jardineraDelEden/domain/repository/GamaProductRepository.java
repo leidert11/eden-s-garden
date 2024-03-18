@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GamaProductRepository extends JpaRepository<GamaProduct, String> {
+//     @Query("")
+//    public List<> get();
+
+
+
 }

@@ -30,4 +30,10 @@ List<Object[]> findOrdersWithLateDelivery();
    // Consulta 12
    @Query("SELECT o FROM Order o WHERE MONTH(o.deliverDate) = 1 AND YEAR(o.deliverDate) = YEAR(CURRENT_DATE)")
    List<Order> findOrdersDeliveredInJanuary();
+
+    // Cuántos pedidos hay en cada estado. Ordena el resultado de forma descendente por el número de pedidos.
+    @Query("SELECT o.status, COUNT(o) FROM Order o GROUP BY o.status ORDER BY COUNT(o) DESC")
+    public List<Object[]> countOrderByStatus();
+
+
 }

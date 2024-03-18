@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OfficeServiceImpl implements ServiceInterface<OfficeDTO>{
+public class OfficeServiceImpl implements ServiceInterface<OfficeDTO> {
     private final OfficeRepository officeRepository;
 
     @Autowired
@@ -42,5 +42,9 @@ public class OfficeServiceImpl implements ServiceInterface<OfficeDTO>{
         // 22 Consulta para encontrar las direcciones de oficina en Fuenlabrada
     public List<String> findOfficeAddressesInFuenlabrada() {
         return officeRepository.findOfficeAddressesInFuenlabrada();
+    }
+
+    public List<String> getOfficesNotEmployeesHaveClientWithGamaFrutales(){
+        return officeRepository.getOfficesNotEmployeesHaveClientWithGamaFrutales();
     }
 }

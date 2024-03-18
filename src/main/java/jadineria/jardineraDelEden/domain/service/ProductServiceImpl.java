@@ -19,7 +19,6 @@ public class ProductServiceImpl implements ServiceInterface<ProductDTO>{
         this.productRepository = productRepository;
     }
 
-
     @Override
     public List<ProductDTO> getAll() {
         return productRepository.findAll().stream()
@@ -29,5 +28,18 @@ public class ProductServiceImpl implements ServiceInterface<ProductDTO>{
     // 15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
     public List<Product> findOrnamentalProductsInStock() {
         return productRepository.findOrnamentalProductsInStock();
+    }
+
+    public List<ProductDTO> getProductsAreNotInAnyOrder(){
+        return productRepository.getProductsAreNotInAnyOrder().stream()
+                .map(Product::toDTO)
+                .toList();
+    }
+    public List<String> getProductsAreNotInAnyOrderNDI(){
+        return productRepository.getProductsAreNotInAnyOrderNDI();
+    }
+
+    public List<Object[]> findMaxAndMinPrice(){
+        return productRepository.findMaxAndMinPrice();
     }
 }

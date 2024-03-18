@@ -24,4 +24,17 @@ public interface OfficeRepository extends JpaRepository<Office, String> {
 // 22
 @Query("SELECT DISTINCT CASE WHEN o.addressLine2 = '' THEN o.addressLine1 ELSE CONCAT(o.addressLine1, ' - ', o.addressLine2) END AS direccionOficina FROM Customer c JOIN Employee e ON c.repSales.employeeCode = e.employeeCode JOIN Office o ON e.office.officeCode = o.officeCode WHERE c.city = 'Fuenlabrada'")
 List<String> findOfficeAddressesInFuenlabrada();
+
+
+    // -- Oficinas donde no trabajan ninguno de los empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama Frutales.
+    @Query("SELECT DISTINCT o.officeCode " +
+            "FROM Office o " +
+            "JOIN Employee e ON o.officeCode = e.office.officeCode " +
+            "JOIN Customer c ON e.employeeCode = c.repSales.employeeCode " +
+            "JOIN Payment p ON c.customerCode = p.customer.customerCode " +
+            "JOIN Order ord ON c.customerCode = ord.customer.customerCode " +
+            "JOIN OrderDetail od ON ord.orderCode = od.order.orderCode " +
+            "JOIN Product prod ON od.product.productCode = prod.productCode " +
+            "WHERE prod.gamaProduct.gama != 'Frutales'")
+    public List<String> getOfficesNotEmployeesHaveClientWithGamaFrutales();
 }

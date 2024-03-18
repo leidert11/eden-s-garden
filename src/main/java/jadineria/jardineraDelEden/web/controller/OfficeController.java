@@ -47,4 +47,10 @@ public class OfficeController {
         public List<String> getOfficeAddressesInFuenlabrada() {
         return officeService.findOfficeAddressesInFuenlabrada();
     }
+
+    @GetMapping("/ofices-not-employees-have-client-with-gama-frutales")
+    public List<String> getOfficesNotEmployeesHaveClientWithGamaFrutales(){
+        return officeService.getOfficesNotEmployeesHaveClientWithGamaFrutales();
+    }
+
 }

@@ -49,5 +49,10 @@ public class OrderServiceImpl implements ServiceInterface<OrderDTO>{
     // 12. Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
     public List<Order> findOrdersDeliveredInJanuary() {
         return orderRepository.findOrdersDeliveredInJanuary();
+
+    }
+    public List<Object[]> countOrderByStatus(){
+        return orderRepository.countOrderByStatus();
     }
 }
+

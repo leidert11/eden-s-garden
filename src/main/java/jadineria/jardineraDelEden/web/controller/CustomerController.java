@@ -90,4 +90,43 @@ public class CustomerController {
     // public List<Customer> getCustomersWithNoOrders() {
     //     return customerService.findCustomersWithNoOrders();
     // }
+    @GetMapping("/customers-do-not-pay-any-orders")
+    public List<CustomerDTO> customersDoNotPayAnyOrders(){
+        return customerService.getCustomersDoNotPayAnyOrders();
+    }
+
+    @GetMapping("/find-customers-with-orders-but-no-payments")
+    public List<CustomerDTO> findCustomersWithOrdersButNoPayments(){
+        return customerService.findCustomersWithOrdersButNoPayments();
+    }
+
+    @GetMapping("/count-customers-by-country")
+    public List<Object[]> countCustomersByCountry(){
+        return customerService.countCustomersByCountry();
+    }
+
+    @GetMapping("/count-customer")
+    public Long countCustomer(){
+        return customerService.countCustomer();
+    }
+
+    @GetMapping("/count-customers-by-city-madrid")
+    public Long countCustomersByCityMadrid(){
+        return customerService.countCustomersByCityMadrid();
+    }
+
+    @GetMapping("/count-customers-by-city-starting-with-m")
+    public List<Object[]> countCustomersByCityStartingWithM(){
+        return customerService.countCustomersByCityStartingWithM();
+    }
+
+    @GetMapping("/count-customers-with-no-sales-representative")
+    public Long countCustomersWithNoSalesRepresentative(){
+        return customerService.countCustomersWithNoSalesRepresentative();
+    }
+
+    @GetMapping("/find-min-max-payment-dates-by-customer")
+    public List<Object[]> findMinMaxPaymentDatesByCustomer(){
+        return customerService.findMinMaxPaymentDatesByCustomer();
+    }
 }
