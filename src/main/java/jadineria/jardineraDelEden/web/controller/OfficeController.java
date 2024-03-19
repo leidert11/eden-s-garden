@@ -38,7 +38,7 @@ public class OfficeController {
             return officeService.findCityAndPhoneInSpain();
         }
         // 20 
-        @GetMapping("/customers-with-payments-and-reps")
+        @GetMapping("/get-customers-with-payments-and-their-sales-reps-and-office-city")
         public List<Object[]> getCustomersWithPaymentsAndTheirSalesRepsAndOfficeCity() {
             return officeService.findCustomersWithPaymentsAndTheirSalesRepAndOfficeCity();
         }
