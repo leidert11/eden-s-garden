@@ -28,8 +28,10 @@ public class ProductController {
     public List<ProductDTO> getAllProduct() {
         return productService.getAll();
     }
+
     // Endpoint para la consulta 15
-    public List<Product> getOrnamentalProductsInStock() {
+    @GetMapping("/get-ornamental-products-in-stock")
+    public List<ProductDTO> getOrnamentalProductsInStock() {
         return productService.findOrnamentalProductsInStock();
     }
 

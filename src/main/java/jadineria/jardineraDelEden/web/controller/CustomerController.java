@@ -24,14 +24,14 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/getAllCustomers")
+    @GetMapping
     public List<CustomerDTO> getAllCustomers() {
         return customerService.getAll();
     }
 
  // 6.
- @GetMapping("/spanish-customers")
- public List<String> getSpanishCustomers() {
+    @GetMapping("/spanish-customers")
+    public List<String> getSpanishCustomers() {
      return customerService.findSpanishCustomers();
  }
     // Endpoint corregido para la consulta 16
@@ -74,23 +74,6 @@ public class CustomerController {
         return customerService.findDistinctCustomerRepresentativeOffice();
     }
 
-    // Consulta 27 - Clientes con gamas de productos
-    // @GetMapping("/customer-gamas")
-    // public List<Object[]> getCustomerGamas() {
-    //     return customerService.findCustomerGamas();
-    // }
-
-    // // Consulta 28 - Clientes sin pagos registrados
-    // @GetMapping("/no-payments")
-    // public List<Customer> getCustomersWithNoPayments() {
-    //     return customerService.findCustomersWithNoPayments();
-    // }
-
-    // // Consulta 29 - Clientes sin órdenes registradas
-    // @GetMapping("/no-orders")
-    // public List<Customer> getCustomersWithNoOrders() {
-    //     return customerService.findCustomersWithNoOrders();
-    // }
     @GetMapping("/customers-do-not-pay-any-orders")
     public List<CustomerDTO> customersDoNotPayAnyOrders(){
         return customerService.getCustomersDoNotPayAnyOrders();
