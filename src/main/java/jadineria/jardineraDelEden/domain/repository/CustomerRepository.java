@@ -15,8 +15,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
   List<String> findSpanishCustomers();
 
   // Consulta 16
-  @Query("SELECT c FROM Customer c JOIN c.repSales e WHERE c.city = 'Madrid' AND (e.employeeCode = 11 OR e.employeeCode = 30)")
-  List<Customer> findCustomersInMadridWithSalesRep11Or30();
+  @Query("SELECT c.customerName FROM Customer c JOIN c.repSales e WHERE c.city = 'Madrid' AND (e.employeeCode = 11 OR e.employeeCode = 30)")
+  List<Object[]> findCustomersInMadridWithSalesRep11Or30();
 
   // Consulta 17
   @Query("SELECT c.customerName, e.name, e.lastName1 FROM Customer c JOIN c.repSales e")

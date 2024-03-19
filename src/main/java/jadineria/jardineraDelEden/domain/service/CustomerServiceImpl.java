@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements ServiceInterface<CustomerDTO>{
     }
 
     // Método para la consulta 16
-    public List<Customer> findCustomersInMadridWithSalesRepCode11Or30() {
+    public List<Object[]> findCustomersInMadridWithSalesRepCode11Or30() {
         return customerRepository.findCustomersInMadridWithSalesRep11Or30();
     }
     

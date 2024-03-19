@@ -1,10 +1,31 @@
-const API_URL = 'http://localhost:8080/jardineria';
 
 
-export function copyToClipboard() {
-    console.log('HOla bobo');
-};
+export function spanishCustomers() {
+    const token = sessionStorage.getItem('jwtToken'); 
+    fetch('http://localhost:8080/api/customers/spanish-customers', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+}
 
-export function copiar() {
-    console.log('HOla boba');
-};
+export function customerSalesRep() {
+    const token = sessionStorage.getItem('jwtToken'); 
+    fetch('http://localhost:8080/api/customers/customer-salesrep', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+}

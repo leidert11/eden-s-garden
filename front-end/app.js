@@ -13,4 +13,13 @@ import * as payment from './js/payment.js';
 
 import * as product from './js/product.js';
 
+// app.js
 
+
+document.getElementById("customerLink").addEventListener("click", function() {
+    customer.spanishCustomers();
+});
+
+document.getElementById("customer2").addEventListener("click", function() {
+    customer.customerSalesRep();
+});

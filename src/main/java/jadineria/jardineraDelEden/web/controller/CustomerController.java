@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 @CrossOrigin("*")
 public class CustomerController {
     private final CustomerServiceImpl customerService;
@@ -23,7 +23,8 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
+
+    @GetMapping("/getAllCustomers")
     public List<CustomerDTO> getAllCustomers() {
         return customerService.getAll();
     }
@@ -35,7 +36,7 @@ public class CustomerController {
  }
     // Endpoint corregido para la consulta 16
     @GetMapping("/madrid-sales-rep-11-30")
-    public ResponseEntity<List<Customer>> getCustomersInMadridWithSalesRepCode11Or30() {
+    public ResponseEntity<List<Object[]>>getCustomersInMadridWithSalesRepCode11Or30() {
         return ResponseEntity.ok(customerService.findCustomersInMadridWithSalesRepCode11Or30());
     }
       // Endpoint para la consulta 17
