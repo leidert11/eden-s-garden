@@ -16,10 +16,11 @@ import * as product from './js/product.js';
 // app.js
 
 
-document.getElementById("customerLink").addEventListener("click", function() {
+document.getElementById("customer1").addEventListener("click", function() {
     customer.spanishCustomers();
 });
 
 document.getElementById("customer2").addEventListener("click", function() {
     customer.customerSalesRep();
 });
+
