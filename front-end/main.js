@@ -123,3 +123,14 @@ const allProgress = document.querySelectorAll('main .card .progress');
 allProgress.forEach(item=> {
 	item.style.setProperty('--value', item.dataset.value)
 })
+
+function cleanToken() {
+	sessionStorage.removeItem('jwtToken');
+	localStorage.removeItem('jwtToken');
+	console.log('Token removed from sessionStorage');
+}
+const buttonClearToken = document.getElementById('buttonClearToken'); 
+buttonClearToken.addEventListener('click', function() {
+	window.location.href = "login.html";
+	cleanToken();
+});
