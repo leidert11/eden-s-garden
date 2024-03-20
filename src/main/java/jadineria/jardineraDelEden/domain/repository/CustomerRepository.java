@@ -14,34 +14,34 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
   @Query("SELECT c.customerName FROM Customer c WHERE c.country = 'Spain'")
   List<String> findSpanishCustomers();
 
-  // Consulta 16
+  // Consulta 16. Devuelve un listado con todos los clientes que sean de la ciudad de `Madrid` y cuyo representante de ventas tenga el código de empleado `11` o `30`.
   @Query("SELECT c.customerName FROM Customer c JOIN c.repSales e WHERE c.city = 'Madrid' AND (e.employeeCode = 11 OR e.employeeCode = 30)")
   List<Object[]> findCustomersInMadridWithSalesRep11Or30();
 
-  // Consulta 17
+  // Consulta 17 Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
   @Query("SELECT c.customerName, e.name, e.lastName1 FROM Customer c JOIN c.repSales e")
   List<Object[]> findCustomerNameAndSalesRepName();
 
-  // Consulta 18
+  // Consulta 18 Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
   @Query("SELECT c.customerName, e.name, e.lastName1 FROM Customer c JOIN c.repSales e WHERE EXISTS (SELECT p FROM Payment p WHERE p.customer = c)")
   List<Object[]> findCustomersWithPaymentsAndSalesRep();
 
-  // Consulta 19
+  // Consulta 19 Muestra el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
   @Query("SELECT c.customerName, e.name, e.lastName1 FROM Customer c JOIN c.repSales e WHERE NOT EXISTS (SELECT p FROM Payment p WHERE p.customer = c)")
   List<Object[]> findCustomersWithoutPaymentsAndSalesRep();
 
-  // Consulta 20
+  // Consulta 20 Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
   @Query("SELECT c.customerName, e.name, e.lastName1, o.city FROM Customer c JOIN c.repSales e JOIN e.office o WHERE EXISTS (SELECT p FROM Payment p WHERE p.customer = c)")
   List<Object[]> findCustomersWithPaymentsAndSalesRepWithOfficeCity();
 
-  // 21
+  // 21 Devuelve el nombre de los clientes que no hayan hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
   @Query("SELECT c.customerName, e.name, o.city FROM Customer c " +
       "LEFT JOIN c.repSales e " +
       "LEFT JOIN e.office o " +
       "WHERE c.customerCode NOT IN (SELECT DISTINCT p.customer.customerCode FROM Payment p)")
   List<Object[]> findCustomersWithoutPayments();
 
-  // 23
+  // 23 Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
   @Query("SELECT c.customerName, e.name, o.city FROM Customer c " +
            "JOIN c.repSales e " +
            "JOIN e.office o")
