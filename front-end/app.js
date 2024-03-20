@@ -9,6 +9,8 @@ import * as office from './js/office.js';
 
 import * as orderDetail from './js/orderDetail.js';
 
+import * as order from './js/order.js';
+
 import * as payment from './js/payment.js';
 
 import * as product from './js/product.js';
@@ -93,3 +95,173 @@ document.getElementById("customer15").addEventListener("click", function() {
 document.getElementById("customer16").addEventListener("click", function() {
     customer.findMinMaxPaymentDatesByCustomer();
 });
+
+
+
+// -----------------------------------------------------------------------------------------
+
+// employee
+
+// 1
+document.getElementById("employee1").addEventListener("click", function() {
+    employee.employeesByBossId7();
+});
+
+// 2
+document.getElementById("employee2").addEventListener("click", function() {
+    employee.getBossOfCompany();
+});
+
+// 3
+document.getElementById("employee3").addEventListener("click", function() {
+    employee.findEmployeesNotSalesRepresentatives();
+})
+
+// 4 
+document.getElementById("employee4").addEventListener("click", function() {
+    employee.getEmployeeAndBossNames();
+})
+
+// 5
+document.getElementById("employee5").addEventListener("click", function() {
+    employee.getAllEmployeesWithBossAndGrandBoss();
+})
+
+// 6
+document.getElementById("employee6").addEventListener("click", function() {
+    employee.getEmployeesNotAssociatedOffice();
+})
+
+// 7
+document.getElementById("employee7").addEventListener("click", function() {
+    employee.getEmployeesDoNotHaveClients();
+})
+
+// 8
+document.getElementById("employee8").addEventListener("click", function() {
+    employee.getNonClientOfficeEmployeesWork();
+})
+
+// 9
+document.getElementById("employee9").addEventListener("click", function() {
+    employee.getEmployeesNotAssociatedOfficeAndNotClient();
+})
+
+// 10
+document.getElementById("employee10").addEventListener("click", function() {
+    employee.findEmployeesWithoutCustomers();
+})
+
+// 11
+document.getElementById("employee11").addEventListener("click", function() {
+    employee.countEmployees();
+})
+
+// 12
+document.getElementById("employee12").addEventListener("click", function() {
+    employee.countCustomersByEmployee();
+})
+
+
+// -----------------------------------------------------------------------------------------
+
+// office
+
+// 1
+document.getElementById("office1").addEventListener("click", function() {
+    office.getOfficeCodeAndCity();
+})
+
+// 2
+document.getElementById("office2").addEventListener("click", function() {
+    office.getCityAndPhoneInSpain();
+})
+
+// 3
+document.getElementById("office3").addEventListener("click", function() {
+    office.findCustomersWithPaymentsAndTheirSalesRepAndOfficeCity();
+})
+
+// 4
+document.getElementById("office4").addEventListener("click", function() {
+    office.findOfficeAddressesInFuenlabrada();
+})
+
+// 5
+document.getElementById("office5").addEventListener("click", function() {
+    office.getOfficesNotEmployeesHaveClientWithGamaFrutales();
+})
+
+// -----------------------------------------------------------------------------------------
+
+// orderDetail
+
+// 1
+document.getElementById("orderDetail1").addEventListener("click", function() {
+   orderDetail.countDistinctProductsByOrder();
+})
+
+// 2 
+document.getElementById("orderDetail2").addEventListener("click", function() {
+    orderDetail.sumQuantityByOrder();
+})
+
+// 3
+document.getElementById("orderDetail3").addEventListener("click", function() {
+    orderDetail.findTop20ProductsByTotalSold();
+})
+
+// 4
+document.getElementById("orderDetail4").addEventListener("click", function() {
+    orderDetail.calculateInvoiceTotals();
+})
+
+// 5
+document.getElementById("orderDetail5").addEventListener("click", function() {
+    orderDetail.calculateProductInvoiceTotals();
+})
+
+// 6
+document.getElementById("orderDetail6").addEventListener("click", function() {
+    orderDetail.calculateTotalByProductStartingWithOR();
+})
+
+// 7
+document.getElementById("orderDetail7").addEventListener("click", function() {
+    orderDetail.calculateTotalByProduct();
+})
+
+// -----------------------------------------------------------------------------------------
+
+// order
+
+// 1
+document.getElementById("order1").addEventListener("click", function() {
+    order.getDistinctOrderStatus();
+})
+
+// 2
+document.getElementById("order2").addEventListener("click", function() {
+    order.getDelayedOrders();
+})
+
+// 3
+document.getElementById("order3").addEventListener("click", function() {
+    order.findOrdersWithLateDelivery();
+})
+
+// 4
+document.getElementById("order4").addEventListener("click", function() {
+    order.findRejectedOrdersIn2009();
+})
+
+// 5
+document.getElementById("order5").addEventListener("click", function() {
+    order.findOrdersDeliveredInJanuary();
+})
+
+// 6
+document.getElementById("order6").addEventListener("click", function() {
+    order.countOrderByStatus();
+})
+
