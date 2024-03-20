@@ -11,7 +11,35 @@ export function employeesByBossId7() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees";
+        const point = document.querySelector('#point').textContent = "Employees";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the first name, last name and email of the employees whose boss has a boss code equal to 7.";
+
+		let html = '';
+		data.forEach(data => {
+			const name = data[0];
+			const lastName1 = data[1];
+            const lastName2 = data[2];
+            const email = data[3];
+			html += `
+				<div class="card">
+					<div class="head">
+						<div>
+							<h1>Employee</h1>
+                            <br>
+							<h2>${name}</h2>
+							
+							<li><strong>Last name: </strong> ${lastName1} ${lastName2}</li>	
+							<li><strong>Email: </strong> ${email} </li>					
+
+						</div>
+					</div>
+					</div>
+				</div>
+			`;
+		});
+		clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
