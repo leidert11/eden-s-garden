@@ -18,9 +18,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Object[]> findDelayedOrders();
 
    // Consulta 10
-   
-@Query("SELECT o.orderCode , o.customer.customerCode, o.expectedDate, o.deliverDate FROM Order o " +
-"WHERE o.deliverDate IS NOT NULL AND FUNCTION('DATE_SUB', o.deliverDate, 2, 'DAY') < o.expectedDate")
+
+    @Query("SELECT o.orderCode, o.customer.customerCode, o.expectedDate, o.deliverDate FROM Order o " +
+            "WHERE o.deliverDate IS NOT NULL AND SUBDATE(o.deliverDate, 2) < o.expectedDate")
 List<Object[]> findOrdersWithLateDelivery();
 
    // Consulta 11
