@@ -15,7 +15,7 @@ import * as payment from './js/payment.js';
 
 import * as product from './js/product.js';
 
-// app.js
+// customer
 
 // 1
 
@@ -265,3 +265,55 @@ document.getElementById("order6").addEventListener("click", function() {
     order.countOrderByStatus();
 })
 
+//-----------------------------------------------------------------------------------------
+
+// payment
+
+// 1 Llamado para la consulta de códigos de cliente con pagos en 2008
+document.getElementById("payment1").addEventListener("click", function() {
+    payment.customerCodesWithPaymentsIn2008();
+});
+
+//2 Llamado para la consulta de pagos realizados en PayPal en 2008, ordenados por total descendente
+document.getElementById("payment2").addEventListener("click", function() {
+    payment.paypalPaymentsIn2008OrderByTotalDesc();
+});
+
+//3 Llamado para la consulta de formas de pago distintas en la tabla de pagos
+document.getElementById("payment3").addEventListener("click", function() {
+    payment.distinctPaymentMethods();
+});
+
+// 4 Llamado para la consulta del promedio de total de pago para el año 2009
+document.getElementById("payment4").addEventListener("click", function() {
+    payment.findAveragePaymentTotalForYear2009();
+});
+
+//5 Llamado para la consulta del total de pagos por año
+document.getElementById("payment5").addEventListener("click", function() {
+    payment.getTotalPaymentsByYear();
+});
+
+//-----------------------------------------------------------------------------------------
+
+// product
+
+//1 Llamado para la consulta de productos ornamentales en stock
+document.getElementById("product1").addEventListener("click", function() {
+    product.getOrnamentalProductsInStock();
+});
+
+//2 Llamado para la consulta de productos que no están en ninguna orden
+document.getElementById("product2").addEventListener("click", function() {
+    product.getProductsAreNotInAnyOrder();
+});
+
+//3 Llamado para la consulta de productos que no están en ninguna orden (forma alternativa)
+document.getElementById("product3").addEventListener("click", function() {
+    product.getProductsAreNotInAnyOrderNDI();
+});
+
+//4Llamado para la consulta de precio máximo y mínimo de productos
+document.getElementById("product4").addEventListener("click", function() {
+    product.findMaxAndMinPrice();
+});

@@ -7,6 +7,7 @@ import jadineria.jardineraDelEden.persistence.dtos.PaymentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,10 @@ public class PaymentServiceImpl implements ServiceInterface<PaymentDTO>{
         return paymentRepository.findCustomerCodesWithPaymentsIn2008();
     }
     // Consulta 13 - Pagos realizados en PayPal en el año 2008, ordenados por total descendente
-    public List<Payment> findPaypalPaymentsIn2008OrderByTotalDesc() {
-        return paymentRepository.findPaypalPaymentsIn2008OrderByTotalDesc();
+    public List<Double> findPaypalPaymentsIn2008OrderByTotalDesc() {
+        List<Double> payments = paymentRepository.findPaypalPaymentsTotalIn2008();
+        Collections.sort(payments, Collections.reverseOrder());
+        return payments;
     }
 
     // Consulta 14 - Formas de pago distintas en la tabla de pagos
