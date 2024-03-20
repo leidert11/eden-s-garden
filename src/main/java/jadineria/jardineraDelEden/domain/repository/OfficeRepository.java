@@ -15,7 +15,7 @@ public interface OfficeRepository extends JpaRepository<Office, String> {
     List<Object[]> findOfficeCodeAndCity();
 
     // 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
-    @Query("SELECT o.city, o.phone FROM Office o WHERE o.country = 'Spain'")
+    @Query("SELECT o.city, o.phone FROM Office o WHERE o.country = 'España'")
     List<Object[]> findCityAndPhoneInSpain();
 
     // 20. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus

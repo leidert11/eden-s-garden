@@ -174,8 +174,8 @@ document.getElementById("office1").addEventListener("click", function() {
 
 // 2
 document.getElementById("office2").addEventListener("click", function() {
-    office.getCityAndPhoneInSpain();
-})
+    office.getCityAndPhoneInSpain()
+});
 
 // 3
 document.getElementById("office3").addEventListener("click", function() {

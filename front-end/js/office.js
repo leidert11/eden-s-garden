@@ -74,6 +74,8 @@ export function getCityAndPhoneInSpain() {
     .catch(error => console.error('Error:', error));
 }
 
+
+
 // 3. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
 export function findCustomersWithPaymentsAndTheirSalesRepAndOfficeCity() {
     const token = sessionStorage.getItem('jwtToken'); 
