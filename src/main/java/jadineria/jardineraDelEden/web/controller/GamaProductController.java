@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/gama-product")
+@RequestMapping("/gama-product")
 @CrossOrigin("*")
 public class GamaProductController {
 
