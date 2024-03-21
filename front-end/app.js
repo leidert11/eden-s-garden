@@ -119,7 +119,7 @@ document.getElementById("employee3").addEventListener("click", function() {
 
 // 4 
 document.getElementById("employee4").addEventListener("click", function() {
-    employee.getEmployeeAndBossNames();
+    employee.findEmployeeAndBossNames();
 })
 
 // 5

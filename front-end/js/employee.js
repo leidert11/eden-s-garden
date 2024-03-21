@@ -55,7 +55,32 @@ export function getBossOfCompany() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Boss of Company";
+        const statement = document.querySelector('#statement').textContent = "Returns the position name, name, last names, and email of the boss of the company.";
+
+        let html = '';
+        data.forEach(boss => {
+            const positionName = boss[0];
+            const name = boss[1];
+            const lastName1 = boss[2];
+            const lastName2 = boss[3];
+            const email = boss[4];
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>${positionName}</h1>
+                            <br>
+                            <h2>${name}</h2>
+                            <li><strong>Last Name: </strong> ${lastName1} ${lastName2}</li>    
+                            <li><strong>Email: </strong> ${email} </li>                    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
@@ -70,12 +95,35 @@ export function findEmployeesNotSalesRepresentatives() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees Not Sales Representatives";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the name, last names, and position of employees who are not sales representatives.";
+
+        let html = '';
+        data.forEach(employee => {
+            const name = employee[0];
+            const lastName1 = employee[1];
+            const position = employee[2];
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>${position}</h1>
+                            <br>
+                            <h2>${name}</h2>
+                            <li><strong>Last Name: </strong> ${lastName1}</li>    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 4
-export function getEmployeeAndBossNames() {
+export function findEmployeeAndBossNames() {
     const token = sessionStorage.getItem('jwtToken'); 
     fetch('http://localhost:8080/employee/employee-and-boss-names', {
         method: 'GET',
@@ -85,10 +133,31 @@ export function getEmployeeAndBossNames() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employee and Boss Names";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the name of the employees along with the name of their bosses.";
+
+        let html = '';
+        data.forEach(entry => {
+            const employeeName = entry[0];
+            const bossName = entry[1];
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee: ${employeeName}</h1>
+                            <br>
+                            <h2>Boss: ${bossName}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 5
 export function getAllEmployeesWithBossAndGrandBoss() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -100,10 +169,33 @@ export function getAllEmployeesWithBossAndGrandBoss() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees with Boss and Grandboss";
+        const statement = document.querySelector('#statement').textContent = "Returns a list showing the name of each employee, the name of their boss, and the name of their boss's boss.";
+
+        let html = '';
+        data.forEach(entry => {
+            const employeeName = entry[0];
+            const bossName = entry[1];
+            const grandBossName = entry[2];
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee: ${employeeName}</h1>
+                            <br>
+                            <h2>Boss: ${bossName}</h2>
+                            <h3>Grandboss: ${grandBossName}</h3>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 6
 export function getEmployeesNotAssociatedOffice() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -115,10 +207,35 @@ export function getEmployeesNotAssociatedOffice() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees Not Associated with an Office";
+        const statement = document.querySelector('#statement').textContent = "Returns a list of employees who are not associated with any office.";
+
+        let html = '';
+        data.forEach(employee => {
+            const name = employee.name;
+            const lastName1 = employee.lastName1;
+            const lastName2 = employee.lastName2;
+            const email = employee.email;
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee</h1>
+                            <br>
+                            <h2>${name}</h2>
+                            <li><strong>Last Name: </strong> ${lastName1} ${lastName2}</li>    
+                            <li><strong>Email: </strong> ${email}</li>    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 7
 export function getNonClientOfficeEmployeesWork() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -130,10 +247,40 @@ export function getNonClientOfficeEmployeesWork() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Non-Client Office Employees";
+        const statement = document.querySelector('#statement').textContent = "Returns a list of employees who do not have an associated client along with the data of the office where they work.";
+
+        let html = '';
+        data.forEach(employee => {
+            const name = employee.name;
+            const lastName1 = employee.lastName1;
+            const lastName2 = employee.lastName2;
+            const email = employee.email;
+            const office = employee.office; // Verificar si el objeto office está definido
+            const officeName = office ? office.name : 'N/A'; // Si office está definido, obtener su nombre, de lo contrario, establecer como 'N/A'
+            const officeAddress = office ? office.address : 'N/A'; // Si office está definido, obtener su dirección, de lo contrario, establecer como 'N/A'
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee</h1>
+                            <br>
+                            <h2>${name}</h2>
+                            <li><strong>Last Name: </strong> ${lastName1} ${lastName2}</li>    
+                            <li><strong>Email: </strong> ${email}</li>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
+
 // 8
 export function getEmployeesDoNotHaveClients() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -145,10 +292,30 @@ export function getEmployeesDoNotHaveClients() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees without Clients";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the names of employees who do not have associated clients.";
+
+        let html = '';
+        data.forEach(employee => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee</h1>
+                            <br>
+                            <h2>${employee.name}</h2>
+                            <li><strong>Last Name: </strong> ${employee.lastName1} ${employee.lastName2}</li>    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 9
 export function getEmployeesNotAssociatedOfficeAndNotClient() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -160,10 +327,30 @@ export function getEmployeesNotAssociatedOfficeAndNotClient() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees without Office and Clients";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the names of employees who do not have an associated office or clients.";
+
+        let html = '';
+        data.forEach(employee => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee</h1>
+                            <br>
+                            <h2>${employee.name}</h2>
+                            <li><strong>Last Name: </strong> ${employee.lastName1} ${employee.lastName2}</li>    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 10
 export function findEmployeesWithoutCustomers() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -175,10 +362,31 @@ export function findEmployeesWithoutCustomers() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employees without Customers and their Boss";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the names of employees who do not have associated customers and the name of their boss.";
+
+        let html = '';
+        data.forEach(entry => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Employee</h1>
+                            <br>
+                            <h2>${entry.name}</h2>
+                            <li><strong>Last Name: </strong> ${entry.lastName1} ${entry.lastName2}</li>    
+                            <li><strong>Boss Name: </strong> ${entry.bossCode}</li>    
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 11
 export function countEmployees() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -189,11 +397,28 @@ export function countEmployees() {
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
+    .then(count => {
+        const countContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Employee Count";
+        const statement = document.querySelector('#statement').textContent = "Displays the total number of employees in the company.";
+
+        countContainer.innerHTML = `
+        <div class="card">
+            <div class="head">
+                <div>
+                <h1>Employee</h1>
+                    <br>
+                    <h2><strong>Total Employees:</strong> ${count}</h2>
+                </div>
+            </div>
+        </div>
+        
+        
+        `;
     })
     .catch(error => console.error('Error:', error));
 }
+
 // 12
 export function countCustomersByEmployee() {
     const token = sessionStorage.getItem('jwtToken'); 
@@ -205,7 +430,27 @@ export function countCustomersByEmployee() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Sales Representatives and Number of Customers";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the name of the sales representatives and the number of customers each one serves.";
+
+        let html = '';
+        data.forEach(entry => {
+            const name = entry[0];
+            const customerCount = entry[1];
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Sales Representative: ${name}</h1>
+                            <br>
+                            <h2>Number of Customers: ${customerCount}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
