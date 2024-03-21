@@ -8,27 +8,35 @@
     <script src="./js/auth_sign_in.js" type="module" defer></script>
 </head>
 <body>
-    <div class="form">
-        <h1>Sign In</h1>
-
-        <form>
-            <div class="username">
-                <input id="adminUser" type="text" required placeholder="UserName">
-            </div>
-            <div class="password">
-                <input id="passwordUser" type="password" required placeholder="password">
-            </div>
+    <div id="formUserToken" class="login-container">
+        <form action="" class="form-login">
+            <ul class="login-nav">
+                <li class="login-nav__item">
+                    <a href="./login.html">Sign In</a>
+                </li>
+                <li class="login-nav__item active">
+                    <a href="#">Sign Up</a>
+                </li>
+            </ul>
+            <label for="adminUser" class="login__label">
+                UserName
+            </label>
+            <input id="adminUser" class="login__input" type="text" required placeholder="UserName" />
+            <label for="passwordUser" class="login__label">
+                Password
+            </label>
+            <input id="passwordUser" class="login__input" type="password" required placeholder="password" />
+            <br><br><br><br>
             <div class="btn">
-                <input id="btnRegister" type="submit" value="Sign In">
+                <input id="btnRegister" type="submit" value="Sign In" class="login__submit">
             </div>
-                
         </form>
-
         <div class="direct-sign-in">
             <p>Do you have an account already created?</p>
             <h4>Login here</h4>
             <button id="login-btn">Login</button>
         </div>
     </div>
+    
 </body>
 </html>
