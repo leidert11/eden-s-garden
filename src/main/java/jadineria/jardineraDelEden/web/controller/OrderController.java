@@ -43,15 +43,16 @@ public class OrderController {
             return orderService.findOrdersWithLateDelivery();
         }
 
-    // Endpoint para la consulta 11
+    // 11
     @GetMapping("/rejected-2009")
-    public ResponseEntity<List<Order>> findRejectedOrdersIn2009() {
+    public ResponseEntity<List<Object[]>> findRejectedOrdersIn2009() {
         return ResponseEntity.ok(orderService.findRejectedOrdersIn2009());
     }
 
+
     // Endpoint para la consulta 12
     @GetMapping("/delivered-in-january")
-    public ResponseEntity<List<jadineria.jardineraDelEden.persistence.Order>> findOrdersDeliveredInJanuary() {
+    public ResponseEntity<List<Object[]>> findOrdersDeliveredInJanuary() {
         return ResponseEntity.ok(orderService.findOrdersDeliveredInJanuary());
     }
  

@@ -43,14 +43,14 @@ public class OrderServiceImpl implements ServiceInterface<OrderDTO>{
         return orderRepository.findOrdersWithLateDelivery();
     }
     // 11
-    public List<Order> findRejectedOrdersIn2009() {
+    public List<Object[]> findRejectedOrdersIn2009() {
         return orderRepository.findRejectedOrdersIn2009();
     }
-    // 12. Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
-    public List<Order> findOrdersDeliveredInJanuary() {
+    //12
+    public List<Object[]> findOrdersDeliveredInJanuary() {
         return orderRepository.findOrdersDeliveredInJanuary();
-
     }
+
     public List<Object[]> countOrderByStatus(){
         return orderRepository.countOrderByStatus();
     }
