@@ -7,6 +7,10 @@
 	box-sizing: border-box;
 }
 
+p{
+	color: white;
+}
+
 :root {
 	--grey: #F1F0F6;
 	--dark-grey: #8D8D8D;

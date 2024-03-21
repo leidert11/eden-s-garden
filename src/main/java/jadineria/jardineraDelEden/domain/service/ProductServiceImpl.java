@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ServiceInterface<ProductDTO>{
                 .map(Product::toDTO)
                 .toList();
     }
-    public List<String> getProductsAreNotInAnyOrderNDI(){
+    public List<Object[]> getProductsAreNotInAnyOrderNDI(){
         return productRepository.getProductsAreNotInAnyOrderNDI();
     }
 

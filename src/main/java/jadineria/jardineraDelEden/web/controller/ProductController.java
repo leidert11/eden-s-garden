@@ -41,7 +41,7 @@ public class ProductController {
     }
 
     @GetMapping("/products-are-not-in-any-order-n-d-i")
-    public List<String> getProductsAreNotInAnyOrderNDI(){
+    public List<Object[]> getProductsAreNotInAnyOrderNDI(){
         return productService.getProductsAreNotInAnyOrderNDI();
     }
 
