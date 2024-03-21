@@ -1,6 +1,6 @@
 body {
     /* background-color: #636fff; */
-    background:url('https://i.ytimg.com/vi/xh9Z4KOKfhg/maxresdefault.jpg') no-repeat center center fixed; 
+    background:url('https://www.wallsauce.com/uploads/wallsauce-com/images/products/web/assaf-frank/large/af20150718-london-076xc01.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -25,10 +25,11 @@ body {
 	margin: 4rem auto 0;
   padding: 5rem 4rem 0 4rem;
 	width: 100%;
-	max-width: 525px;
-	min-height: 680px;
+	max-width: 445px;
+	min-height: 560px;
 	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/283591/login-background.jpg);
 	box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.85);
+	border-radius: 10px;
 }
 
 .login-container:after {
@@ -68,7 +69,7 @@ body {
 
 .login-nav__item a {
 	position: relative;
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(0, 0, 0, 0.5);
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: 500;
@@ -165,7 +166,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	margin-top: 1rem;
+	margin-top: 4rem;
 	padding: .75rem;
 	border-radius: 2rem;
 	display: block;
