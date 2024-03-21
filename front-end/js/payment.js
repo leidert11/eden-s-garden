@@ -1,4 +1,4 @@
-//1 Función para la consulta de códigos de cliente con pagos en 2008
+//1 
 export function customerCodesWithPaymentsIn2008() {
     const token = sessionStorage.getItem('jwtToken');
     fetch('http://localhost:8080/payment/customer-codes-with-payments-in-2008', {
@@ -9,12 +9,31 @@ export function customerCodesWithPaymentsIn2008() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Customer Codes with Payments in 2008";
+        const point = document.querySelector('#point').textContent = "Customer Codes with Payments in 2008";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with the customer codes of customers who made payments in 2008.";
+
+        let html = '';
+        data.forEach(customerCode => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Customer Code</h1>
+                            <br>
+                            <h2>${customerCode}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
 
-//2 Función para la consulta de pagos realizados en PayPal en 2008, ordenados por total descendente
+//2 
 export function paypalPaymentsIn2008OrderByTotalDesc() {
     const token = sessionStorage.getItem('jwtToken');
     fetch('http://localhost:8080/payment/paypal-payments-2008', {
@@ -30,12 +49,32 @@ export function paypalPaymentsIn2008OrderByTotalDesc() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Paypal Payments in 2008";
+        const point = document.querySelector('#point').textContent = "Paypal Payments in 2008";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with all payments made in 2008 via Paypal, ordered from highest to lowest.";
+
+        let html = '';
+        data.forEach(paymentTotal => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Payment Total</h1>
+                            <br>
+                            <h2>${paymentTotal}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
 
-// 3 Función para la consulta de formas de pago distintas en la tabla de pagos
+
+// 3 
 export function distinctPaymentMethods() {
     const token = sessionStorage.getItem('jwtToken');
     fetch('http://localhost:8080/payment/distinct-payment-methods', {
@@ -46,12 +85,32 @@ export function distinctPaymentMethods() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Distinct Payment Methods";
+        const point = document.querySelector('#point').textContent = "Distinct Payment Methods";
+        const statement = document.querySelector('#statement').textContent = "Returns a list with all distinct payment methods.";
+
+        let html = '';
+        data.forEach(paymentMethod => {
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Payment Method</h1>
+                            <br>
+                            <h2>${paymentMethod}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
 
-//4 Función para la consulta del promedio de total de pago para el año 2009
+
+//4 
 export function findAveragePaymentTotalForYear2009() {
     const token = sessionStorage.getItem('jwtToken');
     fetch('http://localhost:8080/payment/find-average-payment-total-for-year', {
@@ -62,12 +121,30 @@ export function findAveragePaymentTotalForYear2009() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Average Payment Total for 2009";
+        const point = document.querySelector('#point').textContent = "Average Payment Total for 2009";
+        const statement = document.querySelector('#statement').textContent = "Returns the average payment total for the year 2009.";
+
+        const averagePayment = data.toFixed(2); // Limitar a dos decimales
+
+        let html = `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <h1>Average Payment Total</h1>
+                        <br>
+                        <h2>${averagePayment}</h2>
+                    </div>
+                </div>
+            </div>
+        `;
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
 
-//5 Función para la consulta del total de pagos por año
+//5 
 export function getTotalPaymentsByYear() {
     const token = sessionStorage.getItem('jwtToken');
     fetch('http://localhost:8080/payment/get-total-payments-by-year', {
@@ -78,7 +155,29 @@ export function getTotalPaymentsByYear() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Total Payments by Year";
+        const point = document.querySelector('#point').textContent = "Total Payments by Year";
+        const statement = document.querySelector('#statement').textContent = "Returns the total sum of payments for each year.";
+
+        let html = '';
+        data.forEach(item => {
+            const year = item[0];
+            const totalPayment = item[1];
+
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Year: ${year}</h1>
+                            <br>
+                            <h2>Total Payment: ${totalPayment}</h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
