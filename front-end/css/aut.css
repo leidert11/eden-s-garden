@@ -1,9 +1,16 @@
 body {
-	background-color: #636fff;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	line-height: 1.25;
-	letter-spacing: 1px;
+    /* background-color: #636fff; */
+    background:url('https://i.ytimg.com/vi/xh9Z4KOKfhg/maxresdefault.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    padding: 20px;
+    color: #f8f8f8;
 }
 
 * {
