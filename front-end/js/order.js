@@ -119,6 +119,7 @@ export function findOrdersWithLateDelivery() {
 
 
 // 4
+// Función para mostrar pedidos rechazados en 2009 en el HTML
 export function findRejectedOrdersIn2009() {
     const token = sessionStorage.getItem('jwtToken'); 
     fetch('http://localhost:8080/order/rejected-2009', {
@@ -129,12 +130,46 @@ export function findRejectedOrdersIn2009() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Rejected Orders in 2009";
+        const point = document.querySelector('#point').textContent = "Rejected Orders in 2009";
+        const statement = document.querySelector('#statement').textContent = "Returns a list of all orders that were rejected in 2009.";
+
+        let html = '';
+        data.forEach(order => {
+            const orderCode = order[0];
+            const orderDate = order[1];
+            const expectedDate = order[2];
+            const deliverDate = order[3];
+            const status = order[4];
+            const comments = order[5];
+            const customerName = order[6];
+
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Order Code: ${orderCode}</h1>
+                            <br>
+                            <p>Order Date: ${orderDate}</p>
+                            <p>Expected Date: ${expectedDate}</p>
+                            <p>Delivery Date: ${deliverDate}</p>
+                            <p>Status: ${status}</p>
+                            <p>Comments: ${comments}</p>
+                            <p>Customer Name: ${customerName}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
 
+
 // 5
+// Función para mostrar pedidos entregados en enero en el HTML
 export function findOrdersDeliveredInJanuary() {
     const token = sessionStorage.getItem('jwtToken'); 
     fetch('http://localhost:8080/order/delivered-in-january', {
@@ -145,10 +180,43 @@ export function findOrdersDeliveredInJanuary() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        const clientCardsContainer = document.querySelector('.info-data');
+        const title = document.querySelector('.title').textContent = "Orders Delivered in January";
+        const point = document.querySelector('#point').textContent = "Orders Delivered in January";
+        const statement = document.querySelector('#statement').textContent = "Returns a list of all orders that were delivered in January of any year.";
+
+        let html = '';
+        data.forEach(order => {
+            const orderCode = order[0];
+            const orderDate = order[1];
+            const expectedDate = order[2];
+            const deliverDate = order[3];
+            const status = order[4];
+            const comments = order[5];
+            const customerName = order[6];
+
+            html += `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h1>Order Code: ${orderCode}</h1>
+                            <br>
+                            <p>Order Date: ${orderDate}</p>
+                            <p>Expected Date: ${expectedDate}</p>
+                            <p>Delivery Date: ${deliverDate}</p>
+                            <p>Status: ${status}</p>
+                            <p>Comments: ${comments}</p>
+                            <p>Customer Name: ${customerName}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        clientCardsContainer.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
 }
+
 
 // 6
 export function countOrderByStatus() {
