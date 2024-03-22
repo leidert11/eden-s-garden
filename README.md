@@ -39,6 +39,10 @@
 
 - [Introduction](#introduction)
 - [Usage](#usage)
+- [Project Roadmap](#project-roadmap)
+- [Backend](#backend)
+- [FRONTEND](#frontend)
+- [Endpoints](#endpoints)
 
 
 ---
@@ -156,7 +160,7 @@ The backend of this project developed in Spring Boot acts as the central engine 
 > [!NOTE]
 > To download or open the class diagram you must have [StarUML](https://staruml.io/) or another UML in order to open it, if you already have one just open the file ubicated in backend resources [here](./fenixgarden/src/main/resources/fenixgarden.mdj).
 
-![](./frontend/resources/doc/classDiagram.jpg)
+![](./resources/garden_eden.mdj)
 
 ---
 
@@ -447,6 +451,28 @@ These tables are interconnected using foreign key constraints to maintain data i
 
 ---
 
+# FRONTEND
+
+## Designs
+
+![imagen](https://github.com/Ancreem/Eden-Garden/assets/139159920/748a549f-2600-4f5a-8ec4-178248322e5b)
+
+![imagen](https://github.com/Ancreem/Eden-Garden/assets/139159920/52b8e149-510a-4191-b6dd-63fdc342f027)
+
+
+## RESULT
+
+![imagen](https://github.com/Ancreem/Eden-Garden/assets/139159920/92821713-cb87-4c99-aa5a-6b0afe22cfb2)
+
+![imagen](https://github.com/Ancreem/Eden-Garden/assets/139159920/04c10209-5aee-43fb-a64d-b8f3a997915c)
+
+![imagen](https://github.com/Ancreem/Eden-Garden/assets/139159920/7878e9b4-edba-436e-8213-8b126faf6754)
+
+
+
+
+---
+
 # Endpoints
 
 <details closed><summary>/register/{id}</summary>
@@ -540,7 +566,7 @@ No parameters
 
 <details closed><summary>/login</summary>
 
-# Endpoint: POST /login
+- # Endpoint: POST /login
 
 ## Parameters
 - **username** *(query)*: string
@@ -556,7 +582,7 @@ No parameters
 
 <details closed><summary>/product</summary>
 
-# Endpoint: GET /product
+- # Endpoint: GET /product
 
 ## Parameters
 No parameters
@@ -567,7 +593,7 @@ No parameters
 | 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
 | 500  | Internal Server Error  | `{}`               |
 
-# Endpoint: GET /product/products-are-not-in-any-order
+- # Endpoint: GET /product/products-are-not-in-any-order
 
 ## Parameters
 No parameters
@@ -578,7 +604,7 @@ No parameters
 | 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
 | 500  | Internal Server Error  | `{}`               |
 
-# Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
 
 ## Parameters
 No parameters
@@ -589,7 +615,7 @@ No parameters
 | 200  | OK                     | `[{}]`             |
 | 500  | Internal Server Error  | `{}`               |
 
-# Endpoint: GET /product/get-ornamental-products-in-stock
+- # Endpoint: GET /product/get-ornamental-products-in-stock
 
 ## Parameters
 No parameters
@@ -600,7 +626,7 @@ No parameters
 | 200  | OK                     | `[{}]`             |
 | 500  | Internal Server Error  | `{}`               |
 
-# Endpoint: GET /product/find-max-and-min-price
+- # Endpoint: GET /product/find-max-and-min-price
 
 ## Parameters
 No parameters
@@ -613,6 +639,375 @@ No parameters
 
 
 </details>
+
+<details closed><summary>/payment</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+<details closed><summary>/Order detail</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+<details closed><summary>/Office</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+<details closed><summary>/Gama-product</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+<details closed><summary>/Employee</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+
+<details closed><summary>/Customer</summary>
+
+- # Endpoint: GET /payment
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{"productCode": "string", "name": "string", "gamaProduct": "string", "dimensions": "string", "supplier": "string", "description": "string", "amountInStock": 0, "salePrice": 0, "supplierPrice": 0}]` |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/products-are-not-in-any-order-n-d-i
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/get-ornamental-products-in-stock
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+- # Endpoint: GET /product/find-max-and-min-price
+
+## Parameters
+No parameters
+
+## Responses
+| Code | Description            | Example            |
+|------|------------------------|--------------------|
+| 200  | OK                     | `[{}]`             |
+| 500  | Internal Server Error  | `{}`               |
+
+
+</details>
+
+
+
+
+
+
+
+
 
 
 
