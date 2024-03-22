@@ -1,3 +1,4 @@
+
 package jadineria.jardineraDelEden.domain.security;
 
 import io.jsonwebtoken.*;
@@ -16,8 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static jadineria.jardineraDelEden.domain.security.Constans.*;
-import static jadineria.jardineraDelEden.domain.security.Constans.HEADER_AUTHORIZACION_KEY;
-import static jadineria.jardineraDelEden.domain.security.Constans.getSigningKey;
 
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
