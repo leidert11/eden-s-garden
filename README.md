@@ -37,7 +37,7 @@
 
 ##  Quick Links
 
-> - [ Introduction](#-introduction)
+- [Introduction](#introduction)
 > - [ Features](#-features)
 > - [ Repository Structure](#-repository-structure)
 > - [ Modules](#-modules)
