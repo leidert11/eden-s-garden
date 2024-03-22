@@ -38,17 +38,8 @@
 ##  Quick Links
 
 - [Introduction](#introduction)
-> - [ Features](#-features)
-> - [ Repository Structure](#-repository-structure)
-> - [ Modules](#-modules)
-> - [ Getting Started](#-getting-started)
->   - [ Installation](#-installation)
->   - [ Running Eden-Garden](#-running-Eden-Garden)
->   - [ Tests](#-tests)
-> - [ Project Roadmap](#-project-roadmap)
-> - [ Contributing](#-contributing)
-> - [ License](#-license)
-> - [ Acknowledgments](#-acknowledgments)
+- [Usage](#usage)
+
 
 ---
 
